@@ -39,7 +39,8 @@ defaultBackgroundImage = "image/cornell-box-specular.jpeg" # used as default for
 [homepage]
   layout = "background" # valid options: page, profile, hero, card, background, custom
   #homepageImage = "IMAGE.jpg" # used in: hero, and card
-  homepageImage = "image/cornell-box.jpeg"
+  # homepageImage = "image/cornell-box.jpeg"
+  homepageImage = "image/homepage-background.png"
   showRecent = true
   showRecentItems = 5
   showMoreLink = false
