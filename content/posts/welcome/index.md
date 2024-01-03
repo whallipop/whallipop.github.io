@@ -1,7 +1,7 @@
 +++
 title = "Welcome to Whallipop's Coding World"
 date = 2023-12-15T13:25:02+08:00
-draft = true
+draft = false
 +++
 
 {{<lead>}}
@@ -39,3 +39,61 @@ What's more, the **LLM (Large Laguage Model)** and **Image Generation** using de
 Besides I love composing music. This site will record some knowledge and experience about **music creation**.
 
 That's a lot. I am always the greedy man since I was a child. Good luck to myself.
+
+<div class="shape">
+  <div class="square-background">
+    <div class="square-element"></div>
+  </div>
+</div>
+<label for="color-picker">Color Picker:</label>
+<input type="color" id="ground-color-picker" value="#0000ff">
+<input type="color" id="element-color-picker" value="#0000ff">
+
+<script>
+let rootContainer;
+let groundColorPicker;
+let elementColorPicker;
+const defaultColor = "#000011";
+window.addEventListener("load", startup, false);
+
+function setupColorPicker(selector, setStyle) {
+  let picker = document.querySelector(selector);
+  console.log(picker);
+  picker.value = defaultColor;
+  picker.addEventListener("input", setStyle, false);
+  picker.addEventListener("change", setStyle, false);
+  return picker;
+}
+
+function startup() {
+  rootContainer = document.querySelector(':root');
+  groundColorPicker = setupColorPicker("#ground-color-picker", setGroundStyle);
+  elementColorPicker = setupColorPicker("#element-color-picker", setElementStyle);
+  setRootProperty('--ground-color', groundColorPicker.value);
+  setRootProperty('--element-color', elementColorPicker.value);
+}
+
+function setRootProperty(propertyName, propertyValue) {
+  rootContainer.style.setProperty(propertyName, propertyValue);
+}
+
+function setGroundStyle(event) {
+  setRootProperty('--ground-color', event.target.value);
+}
+
+function setElementStyle(event) {
+  setRootProperty('--element-color', event.target.value);
+}
+
+// function updateFirst(event) {
+//   const p = document.querySelector("#test-div");
+//   if (p) {
+//     p.style.color = event.target.value;
+//   }
+// }
+// function updateAll(event) {
+//   document.querySelectorAll("#test-div").forEach((p) => {
+//     p.style.color = event.target.value;
+//   });
+// }
+</script>

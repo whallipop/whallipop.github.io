@@ -2,6 +2,10 @@
 :root {
     --yellow: #ffc600;
     --black: #272727;
+
+    /* Interaction of Color */
+    --ground-color: #eeeeee;
+    --element-color: #222;
   }
 
 .container {
@@ -12,4 +16,19 @@
 
 .item {
     background-color: var(--yellow);
+}
+
+.square-background {
+  height: 200px;
+  width: 200px;
+  background-color: var(--ground-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.square-element {
+  height: 50px;
+  width: 50px;
+  background-color: var(--element-color);
 }
