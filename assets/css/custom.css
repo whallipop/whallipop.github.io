@@ -18,6 +18,17 @@
     background-color: var(--yellow);
 }
 
+.interaction-of-color {
+    --ioc-background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--ioc-background);
+    box-shadow: #222;
+    padding: 2em;
+    margin: 1em;
+}
+
 .square-background {
   height: 200px;
   width: 200px;
