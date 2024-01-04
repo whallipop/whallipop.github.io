@@ -19,14 +19,16 @@
 }
 
 .interaction-of-color {
+    width: 100%;
     --ioc-background: white;
     display: flex;
     align-items: center;
     justify-content: center;
     background-color: var(--ioc-background);
-    box-shadow: #222;
+    border-radius: 8px;
+    box-shadow: 4px 4px 0 4px #aaaaaa;
     padding: 2em;
-    margin: 1em;
+    margin: 2em;
 }
 
 .square-background {

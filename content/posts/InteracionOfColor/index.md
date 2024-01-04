@@ -1,6 +1,6 @@
 +++
 title = "Color Exercise for Interaction of Color, using CSS"
-date = 2023-12-15T13:25:02+08:00
+date = 2024-01-03T13:25:02+08:00
 draft = false
 +++
 
@@ -18,10 +18,10 @@ draft = false
   </div>
 </div>
 <label for="color-picker">Color Picker:</label>
-<input type="color" id="ground-color-picker-1" value="#00eeff">
-<input type="color" id="element-color-picker-1" value="#0000ff">
-<input type="color" id="ground-color-picker-2" value="#00eeff">
-<input type="color" id="element-color-picker-2" value="#0000ff">
+<input type="color" id="ground-color-picker-1" value="#A0BEDC">
+<input type="color" id="element-color-picker-1" value="#B9D296">
+<input type="color" id="ground-color-picker-2" value="#F5E664">
+<input type="color" id="element-color-picker-2" value="#B9D296">
 
 <script>
 let sb1, sb2, se1, se2;
