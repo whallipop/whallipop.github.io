@@ -10,7 +10,7 @@ draft = false
 
 # Cold Day
 
-It was such a cold day, and I am sitting at the backseat of my car, typing these words and decided to start my tech blog to share my coding life.
+It was such a cold day, and I was sitting at the backseat of my car, typing these words, and decided to start my tech blog to share my coding life.
 
 I am glad to see you come to here. My main topic will always be **Game** and **Game Development**, but this site will also include topics about **Making Vlog from Code**, **AI Models Application**, **Theorecical Visualization** and **Music Composition**.
 

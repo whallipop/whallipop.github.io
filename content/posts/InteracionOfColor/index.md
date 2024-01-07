@@ -74,3 +74,5 @@ function setStyle(event, target, propertyName) {
 //   });
 // }
 </script>
+
+Click `tab` to change the plates of the cases.
