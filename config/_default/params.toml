@@ -51,8 +51,8 @@ defaultBackgroundImage = "image/cornell-box-specular.jpeg" # used as default for
 
 [article]
   showDate = true
-  showViews = true
-  showLikes = true
+  # showViews = true
+  # showLikes = true
   showDateUpdated = false
   showAuthor = false
   showHero = true
