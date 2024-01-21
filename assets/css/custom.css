@@ -1,108 +1,134 @@
 
 :root {
-    --yellow: #ffc600;
-    --black: #272727;
+  --yellow: #ffc600;
+  --black: #272727;
 
-    /* Interaction of Color */
-    --box-color: #eeeeee;
-    --tab-color-off: #22234a;
-    --tab-color-on: #524d93;
-  }
+  /* Interaction of Color */
+  --box-color: #eeeeee;
+  --tab-color-off: #22234a;
+  --tab-color-on: #524d93;
+}
 
 .container {
-    display: grid;
-    grid-template-columns: repeat(4, 100px);
-    gap: 20px;
+  display: grid;
+  grid-template-columns: repeat(4, 100px);
+  gap: 20px;
 }
 
 .item {
-    background-color: var(--yellow);
+  background-color: var(--yellow);
 }
 
+/* #region Utility */
+.emply-flex-cell {
+  width: 50px;
+}
+/* #endregion */
+
+/* #region Interaction of Color Shapes */
 .interaction-of-color {
-    width: 100%;
-    --ioc-background: white;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    background-color: var(--ioc-background);
-    border-radius: 16px;
-    box-shadow: 3px 3px 3px 3px #9090c5, -3px -3px 3px 3px #c590ab;
-    padding: 30px;
-    margin: 20px 0;
+  width: 100%;
+  --ioc-background: white;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--ioc-background);
+  border-radius: 16px;
+  box-shadow: 3px 3px 3px 3px #9090c5, -3px -3px 3px 3px #c590ab;
+  padding: 30px;
+  margin: 20px 0;
 }
 
 .nested-out-box {
-  height: 200px;
-  width: 200px;
-  background-color: var(--box-color);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+height: 200px;
+width: 200px;
+background-color: var(--box-color);
+display: flex;
+align-items: center;
+justify-content: center;
 }
 
 .nested-in-box {
-  height: 50px;
-  width: 50px;
-  background-color: var(--box-color);
+height: 50px;
+width: 50px;
+background-color: var(--box-color);
 }
 
 .interaction-of-color .color-palette {
-  margin-top: 20px;
-  display: flex;
-  justify-content: center;
-  column-gap: 2%;
-  flex: 100%;
+margin-top: 20px;
+display: flex;
+justify-content: center;
+column-gap: 2%;
+flex: 100%;
 }
 
 .interaction-of-color .color-picker {
 
 }
+/* #endregion */
 
+/* #region Tab Style */
 .pattern-tabs {
-  display: grid;
-  grid-template-columns: 100px minmax(0, 1fr);
-  /* grid-template-rows: repeat(auto-fit, minmax(100px, 1fr)); */
-  margin: 25px 0;
-  align-items: start;
-  /* align-content: center; */
+display: grid;
+/* grid-template-rows: repeat(auto-fit, minmax(100px, 1fr)); */
+margin: 25px 0;
+align-items: start;
+/* align-content: center; */
 }
-
 .pattern-label {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  /* height: 100%; */
-  background: var(--tab-color-off); 
-  border-radius: 8px 0 0 8px;
-  padding: 2px 0px 2px 10px;
-  /* border: 2px solid #ccc;  */
-  grid-column: 1 / span 1;
-  border-bottom: 1px solid grey;
+display: flex;
+align-items: center;
+justify-content: center;
+width: 100%;
+/* height: 100%; */
+background: var(--tab-color-off); 
+/* border: 2px solid #ccc;  */
+border-bottom: 1px solid grey;
 }
-
 .pattern-tabs [type=radio] {
-  display: none;
+display: none;
 }
-
 .content {
-  grid-column: 2 / span 1;
-  grid-row: 1 / span 5;
-  background: var(--tab-color-on);
-  border-radius: 0 16px 16px 0;
-  padding: 20px;
-  /* border: 5px solid #8e279b; */
-  display: none;
+background: var(--tab-color-on);
+border-radius: 0 16px 16px 16px;
+padding: 20px;
+/* border: 5px solid #8e279b; */
+display: none;
 }
-
 [type=radio]:checked + .pattern-label {
-  background: var(--tab-color-on);
-  border-bottom: 2px solid white;
-  z-index: 2;
+background: var(--tab-color-on);
+border-bottom: 2px solid white;
+z-index: 2;
 }
 [type=radio]:checked + .pattern-label + .content {
-  /* background: white; */
-  display: block;
+/* background: white; */
+display: block;
 }
+
+.tabs-row-label .pattern-tabs {
+grid-template-columns: 100px minmax(0, 1fr);
+}
+.tabs-row-label .pattern-label {
+border-radius: 8px 0 0 8px;
+grid-column: 1 / span 1;
+padding: 2px 0px 2px 10px;
+}
+.tabs-row-label .content {
+grid-column: 2 / span 1;
+grid-row: 1 / span 5;
+}
+
+.tabs-column-label .pattern-tabs {
+grid-template-rows: auto minmax(0, 1fr);
+}
+.tabs-column-label .pattern-label {
+border-radius: 8px 8px 0 0;
+grid-row: 1 / span 1;
+padding: 2px 10px 2px 10px;
+}
+.tabs-column-label .content {
+grid-row: 2 / span 1;
+grid-column: 1 / span 3;
+}
+/* #endregion */

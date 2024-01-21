@@ -10,7 +10,7 @@ draft = false
  You should always doubt the color you see with your eyes. 
 {{</lead>}}
 
-{{< TabParent height="100">}}
+{{< TabParent height="100" direction="row">}}
     {{< TabFrame contentId="ocd" label="One Color Different" tabId="tab1" >}}
         {{< ColorCanvas canvasId="tab1" >}}
             {{< NestedBox sbid="sb-1" seid="se-1" >}}
@@ -29,6 +29,7 @@ draft = false
             {{< ColorPalette  canvasId="tab2" >}}
                 {{< ColorPicker id="b-picker-1" color="#888888" selectors="sb-1" >}}
                 {{< ColorPicker id="f-picker-1" color="#BBBBBB" selectors="se-1" >}}
+                {{< BlankFlexItem >}}
                 {{< ColorPicker id="b-picker-2" color="#222222" selectors="sb-2" >}}
                 {{< ColorPicker id="f-picker-2" color="#999999" selectors="se-2" >}}
             {{< /ColorPalette >}}
