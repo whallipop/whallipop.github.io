@@ -11,7 +11,7 @@ draft = false
 {{</lead>}}
 
 {{< TabParent height="100">}}
-    {{< TabContent contentId="ocd" label="One Color Different" tabId="tab1" >}}
+    {{< TabFrame contentId="ocd" label="One Color Different" tabId="tab1" >}}
         {{< ColorCanvas canvasId="tab1" >}}
             {{< NestedBox sbid="sb-1" seid="se-1" >}}
             {{< NestedBox sbid="sb-2" seid="se-2" >}}
@@ -21,8 +21,8 @@ draft = false
                 {{< ColorPicker id="b-picker-2" color="#F5E664" selectors="sb-2" >}}
             {{< /ColorPalette >}}
         {{< /ColorCanvas >}}
-    {{< /TabContent >}}
-    {{< TabContent contentId="ocd" label="Two Color Same" tabId="tab2"  checked="yes" >}}
+    {{< /TabFrame >}}
+    {{< TabFrame contentId="ocd" label="Two Color Same" tabId="tab2"  checked="yes" >}}
         {{< ColorCanvas canvasId="tab2" >}}
             {{< NestedBox sbid="sb-1" seid="se-1" >}}
             {{< NestedBox sbid="sb-2" seid="se-2" >}}
@@ -33,7 +33,7 @@ draft = false
                 {{< ColorPicker id="f-picker-2" color="#999999" selectors="se-2" >}}
             {{< /ColorPalette >}}
         {{< /ColorCanvas >}}
-    {{< /TabContent >}}
+    {{< /TabFrame >}}
 {{< /TabParent >}}
 
 
