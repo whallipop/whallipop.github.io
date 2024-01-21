@@ -1,0 +1,13 @@
+
+{{ $sbid := .Get "sbid" }}
+{{ $seid := .Get "seid" }}
+{{ $postfix := "" }}
+{{ with .Parent.Params }}
+    {{ with .canvasId}}
+        {{ $postfix = . }}
+    {{ end }}
+{{ end }}
+
+<div class="nested-out-box" id="{{ $sbid }}-{{ $postfix }}" style="--box-color: white;">
+    <div class="nested-in-box" id="{{ $seid }}-{{ $postfix }}" style="--box-color: white;"></div>
+</div>

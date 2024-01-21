@@ -1,0 +1,14 @@
+<script>
+    function setupColorPicker(picker, setStyleLambda) {
+        picker.addEventListener("input", setStyleLambda, false);
+        picker.addEventListener("change", setStyleLambda, false);
+    }
+
+    function setStyleProperty(propertyValue, target, propertyName) {
+        target.style.setProperty(propertyName, propertyValue);
+    }
+
+    function setStyle(event, target, propertyName) {
+        setStyleProperty(event.target.value, target, propertyName);
+    }
+</script>

@@ -4,8 +4,7 @@
     --black: #272727;
 
     /* Interaction of Color */
-    --ground-color: #eeeeee;
-    --element-color: #222;
+    --box-color: #eeeeee;
   }
 
 .container {
@@ -22,6 +21,7 @@
     width: 100%;
     --ioc-background: white;
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: center;
     background-color: var(--ioc-background);
@@ -31,17 +31,29 @@
     margin: 20px 0;
 }
 
-.square-background {
+.nested-out-box {
   height: 200px;
   width: 200px;
-  background-color: var(--ground-color);
+  background-color: var(--box-color);
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.square-element {
+.nested-in-box {
   height: 50px;
   width: 50px;
-  background-color: var(--element-color);
+  background-color: var(--box-color);
+}
+
+.interaction-of-color .color-palette {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  column-gap: 2%;
+  flex: 100%;
+}
+
+.interaction-of-color .color-picker {
+
 }

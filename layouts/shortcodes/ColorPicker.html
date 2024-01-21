@@ -1,0 +1,26 @@
+
+{{ $postfix := "" }}
+{{ with .Parent.Params }}
+    {{ with .canvasId}}
+        {{ $postfix = . }}
+    {{ end }}
+{{ end }}
+{{ $pickerId := print (.Get "id") "-" $postfix}}
+{{ $selectors := split (.Get "selectors") "," }}
+
+<input class="color-picker" type="color" id="{{ $pickerId }}" value="{{ .Get "color"}}">
+<script>
+    {{ with .Get "selectors" }}
+    console.log("Fuck it once {{ $pickerId }}");
+    var colorPicker = document.querySelector("#{{ $pickerId }}");
+    setupColorPicker(colorPicker, (event) => {
+        {{ range $selectors }}
+        setStyle(event, document.querySelector("#{{ . }}-{{ $postfix }}"), '--box-color');
+        {{ end }}
+    });
+
+    {{ range $selectors }}
+    setStyleProperty(colorPicker.value, document.querySelector("#{{ . }}-{{ $postfix }}"), '--box-color');
+    {{ end }}
+    {{ end }}
+</script>
