@@ -10,7 +10,7 @@ draft = false
  You should always doubt the color you see with your eyes. 
 {{</lead>}}
 
-{{< TabParent height="100" direction="row">}}
+{{< TabParent height="100" direction="horizontal">}}
     {{< TabFrame contentId="ocd" label="One Color Different" tabId="tab1" >}}
         {{< ColorCanvas canvasId="tab1" >}}
             {{< NestedBox sbid="sb-1" seid="se-1" >}}
