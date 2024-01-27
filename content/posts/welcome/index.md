@@ -20,7 +20,7 @@ The following content of this article is about my experience, motivation and psy
 
 # My Start Point of Game Development
 
-When I was a little child, my mom bought me a fake NES, which was looked like a "keyboard" and can be play also the fake NES game card. 
+When I was a little child, my mom bought me a fake NES, which was looked like a "keyboard" and can be played with faked NES game card. 
 
 !["Fake Chinese NES"](xiaobawang.png "Photo from Internet")
 
@@ -28,14 +28,14 @@ At that time, most of the children played lots of games through this device, and
 
 But In fact, I didn't start programming until I was in college and I didn't have any prior knowledge that would help me code better. I studied the basics of computer systems, programming language syntax and so on. During my graduate and undergraduate education, I finally found my interest in game development and computer graphics.
 
-Recalling that in high school, I made a small game using RPG Maker in my spare time. This experience left a deep impression on me. I was obssessed with developing day and night, until one day my system was crashed and I lost all my game data. After a long time in college and working in a company, I realized that the dream of making my own game was always my goal in the future.
+Recalling that in high school, I made a small game using RPG Maker in my spare time. This experience left a deep impression on me. I was obssessed with developing day and night, until one day my system was crashed and I lost all my game data. After a long time in college and working in a company, I realized that the dream of making my own game was still my goal in the future.
 
 # Other Topics...
 
 I quite enjoy programming, although I am not crazy about it. After I decided to do something for recording my future coding life, I learned a lot about **front-end** as the cool effects it cound make were really impressive and attracted me to master it. And since I enjoy **visualization of knowledge** in simple ways, using front-end tools to present knowledge with image or animations is a very interesting challenge for me.
 
-What's more, the **LLM (Large Laguage Model)** and **Image Generation** using deep learning have become very popular in recent time. Although I have done some research on applying deep learning to computer graphics, I will not focus on the theory and implementation of specific network at this time (maybe I will, who knows). Instead, I am going to put together AI networks to see how efficiencies it can provide if I use it in my coding life.
+What's more, the **LLM (Large Laguage Model)** and **Image Generation** using deep learning have become very popular in recent time. Although I have done some research on applying deep learning to computer graphics, I will not focus on the theory and implementation of specific network at this time (maybe I will, who knows). Instead, I am going to put together AI networks to see how efficient it can be if I use it in my coding life.
 
 Besides I love composing music. This site will record some knowledge and experience about **music creation**.
 
-That's a lot. I am always the greedy man since I was a child. Good luck to myself.
+That's a lot. I am always a greedy person since I was a child. Good luck to myself.
