@@ -134,10 +134,25 @@ flex: 100%;
 .tabs-horizontal-label [type=radio]:checked + .pattern-label {
   border-top: 1px solid grey;
   border-bottom: 0px;
-  border-right: 2px solid white;
+  border-top: 1px solid white;
 }
 .tabs-horizontal-label .content {
   grid-row: 2 / span 1;
   grid-column: 1 / span 3;
+}
+/* #endregion */
+
+/* #region simple toggle*/
+.simple-toggle[type=checkbox] + .interaction-of-color .toggle-enable + div {
+  display: none;
+}
+.simple-toggle[type=checkbox] + .interaction-of-color .toggle-disable + div {
+  display: inherit;
+}
+.simple-toggle[type=checkbox]:checked + .interaction-of-color .toggle-enable + div {
+  display: inherit;
+}
+.simple-toggle[type=checkbox]:checked + .interaction-of-color .toggle-disable + div {
+  display: none;
 }
 /* #endregion */

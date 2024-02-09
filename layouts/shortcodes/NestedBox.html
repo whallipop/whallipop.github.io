@@ -7,7 +7,17 @@
         {{ $postfix = . }}
     {{ end }}
 {{ end }}
+{{ $lsid := printf "ls-%s-%s" $sbid $postfix }}
+{{ with .Get "left_sid"}}
+    {{ $lsid = printf "%s-%s" . $postfix}}
+{{ end }}
+{{ $rsid := printf "rs-%s-%s" $sbid $postfix }}
+{{ with .Get "right_sid"}}
+    {{ $rsid = printf "%s-%s" . $postfix}}
+{{ end }}
 
 <div class="nested-out-box" id="{{ $sbid }}-{{ $postfix }}" style="--box-color: white;">
+    <div class="nested-side-box" id="{{ $lsid }}"></div>
     <div class="nested-in-box" id="{{ $seid }}-{{ $postfix }}" style="--box-color: white;"></div>
+    <div class="nested-side-box" id="{{ $rsid }}"></div>
 </div>
