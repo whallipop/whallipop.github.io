@@ -52,7 +52,7 @@ The interaction of color comparision is used for practice how to leverage CSS to
 
 ## `TabParent` -> `TabFrame` -> `ColorCanvas`
 
-`TabParent` is used for show out a tabs group which contain serveral tabs with different color visual comparision effect. And each tab is wrapped by `TabFrame` to be switched by the tab label which is clicked. And inside it we should leverage `ColorCanvas` as a "canvas" wrapping the real content.
+`TabParent` is used for show out a tabs group which contain serveral tabs with different color visual comparision effect. And each tab is wrapped by `TabFrame` to be switched by the tab label which is clicked. And inside it we should leverage `ColorCanvas` as a "canvas" wrapping the real content. Its CSS class is `interaction-of-color` which will be used everywhere to achive complex effects.
 
 ## Setup `ColorCanvas` properties
 
@@ -74,6 +74,12 @@ The toggle group claim an input of checkbox to switch the status inside `ColorCa
     {{</*  ToggleDisable */>}} {{</*  Single Div ShortCut */>}}
 {{</*  /ColorCanvas */>}}
 ```
+
+And we should use this following CSS selector to achieve the `ToggleGroup` effect:
+```Hugo
+.simple-toggle[type=checkbox]:checked + .interaction-of-color .toggle-enable + div
+```
+The `simple-toggle`(with checked states or not) "plus" `.interaction-of-color` to select the control canvas of our target `ColorCanvas`. Then check its children which contains our helper shortcuts (`ToggleEnable` and `ToggleDisable`) and leverage "plus" again to find out the `<div>` color pattern element that we want to control.
 
 ## Elements inside `ColorCanvas`
 
