@@ -1,33 +1,23 @@
 
-{{ $leftOutId := .Get "leftOutId" }}
-{{ $leftInId := .Get "leftInId" }}
-{{ $rightOutId := .Get "rightOutId" }}
-{{ $rightInId := .Get "rightInId" }}
+{{ $leftOutId := .leftOutId }}
+{{ $leftInId := .leftInId }}
+{{ $rightOutId := .rightOutId }}
+{{ $rightInId := .rightInId }}
 
-{{ $connectedId := "" }}
-{{ with .Get "connectedId" }}
-    {{ $connectedId = . }}
-{{ end }}
-
-{{ $postfix := "" }}
-{{ with .Parent.Params }}
-    {{ with .contextPostfix}}
-        {{ $postfix = . }}
-    {{ end }}
-{{ end }}
+{{ $postfix := .contextPostfix }}
 
 {{ $showAuxline := 0 }}
-{{ $leftAuxId := "" }}
-{{ $rightAuxId := "" }}
-{{ if .Get "showAuxline" }}
+{{ $leftAuxId := print "laux-default-" $.Ordinal }}
+{{ $rightAuxId := print "raux-default-" $.Ordinal }}
+{{ if .showAuxline }}
     {{ $showAuxline = 1}}
-    {{ $leftAuxId = .Get "leftAuxId" }}
-    {{ $rightAuxId = .Get "rightAuxId" }}
+    {{ $leftAuxId = .leftAuxId }}
+    {{ $rightAuxId = .rightAuxId }}
 {{ end }}
 
-{{ $graphicType := .Get "graphicType"}}
+{{ $graphicType := .graphicType}}
 <div>
-    {{ if eq $graphicType "TwoXInBox"}}
+    {{ if eq $graphicType "XInBox"}}
     <svg height="200px" stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 360 180" width="100%" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:vectornator="http://vectornator.io" xmlns:xlink="http://www.w3.org/1999/xlink">
         <defs/>
         <g id="left-1">
@@ -60,13 +50,13 @@
         <defs/>
         <g id="left-1">
             <path d="M0 0L180 0L180 180L0 180L0 0Z"
-                class="svg-graphics" id="{{ $leftOutId }}-{{ $postfix }}" style="--box-color: white;"/>
+                class="svg-graphics" id="{{ $leftOutId }}-{{ $postfix }}" style="--box-color: black;"/>
             <path d="M59.347 59.347L120.653 59.347L120.653 120.653L59.347 120.653L59.347 59.347Z"
                 class="svg-graphics" id="{{ $leftInId }}-{{ $postfix }}" style="--box-color: white;"/>
         </g>
         <g id="right-2">
             <path d="M180 0L360 0L360 180L180 180L180 0Z"
-                class="svg-graphics" id="{{ $rightOutId }}-{{ $postfix }}" style="--box-color: white;"/>
+                class="svg-graphics" id="{{ $rightOutId }}-{{ $postfix }}" style="--box-color: black;"/>
             <path d="M239.347 59.347L300.653 59.347L300.653 120.653L239.347 120.653L239.347 59.347Z"
                 class="svg-graphics" id="{{ $rightInId }}-{{ $postfix }}" style="--box-color: white;"/>
         </g>

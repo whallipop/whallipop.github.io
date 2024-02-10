@@ -1,0 +1,87 @@
+
+{{ $contextPostfix := "default" }}
+{{ $tabGroupId := "default" }}
+{{ with .Parent.Params }}
+    {{ with .contextPostfix}}
+        {{ $contextPostfix = (print . $.Ordinal)}}
+        {{ $tabGroupId = . }}
+    {{ end }}
+{{ end }}
+{{ $label := .Get "label"}}
+{{ $checked := ""}}
+{{ with .Get "checked"}}
+    {{ $checked = "yes"}}
+{{ end }}
+{{ $is4Colors := 3}}
+{{ with .Get "is4Colors"}}
+    {{ $is4Colors = 4}}
+{{ end }}
+
+{{ $graphicType := "NestedTwoBox" }}
+{{ with .Get "graphicType"}}
+    {{ $graphicType = .}}
+{{ end }}
+
+{{ partial "TabFrame.html" (dict "tabId" $contextPostfix "label" $label "tabGroupId" $tabGroupId "checked" $checked) }}
+<div class="content">
+    {{ partial "ToggleGroup.html" (dict "label" "Show Aux Line" "contextPostfix" $contextPostfix) }}
+    <div class="interaction-of-color">
+        {{ partial "ToggleDisable.html" . }}
+        {{ partial "SVGColorPattern.html" 
+            (dict 
+                "graphicType" $graphicType
+                "leftOutId" "lb-1" 
+                "leftInId" "le-1" 
+                "rightOutId" "rb-1" 
+                "rightInId" "re-1" 
+                "contextPostfix" $contextPostfix
+            ) }}
+        {{ partial "ToggleEnable.html" . }}
+        {{ partial "SVGColorPattern.html" 
+            (dict 
+                "graphicType" $graphicType
+                "leftOutId" "lb-2" 
+                "leftInId" "le-2" 
+                "rightOutId" "rb-2" 
+                "rightInId" "re-2" 
+                "showAuxline" "yes" 
+                "leftAuxId" "laux" 
+                "rightAuxId" "raux"
+                "contextPostfix" $contextPostfix
+            ) }}
+        <div class="color-palette">
+            {{ if eq $is4Colors 3}}
+                {{ partial "ColorPicker.html" 
+                    (dict "id" "b-picker-1" "color" "#A0BEDC" 
+                        "selectors" "lb-1,lb-2" 
+                        "contextPostfix" $contextPostfix) }}
+                {{ partial "ColorPicker.html" 
+                    (dict "id" "f-picker" "color" "#B9D296" 
+                        "selectors" "le-1,le-2,re-1,re-2,laux,raux" 
+                        "contextPostfix" $contextPostfix) }}
+                {{ partial "ColorPicker.html" 
+                    (dict "id" "b-picker-2" "color" "#F5E664" 
+                        "selectors" "rb-1,rb-2" 
+                        "contextPostfix" $contextPostfix) }}
+            {{ else }}
+                {{ partial "ColorPicker.html" 
+                    (dict "id" "b-picker-1" "color" "#888888"
+                        "selectors" "lb-1,lb-2" 
+                        "contextPostfix" $contextPostfix) }}
+                {{ partial "ColorPicker.html" 
+                    (dict "id" "f-picker-1" "color" "#BBBBBB" 
+                    "selectors" "le-1,le-2,laux" 
+                        "contextPostfix" $contextPostfix) }}
+                {{ partial "BlankFlexItem.html" .}}
+                {{ partial "ColorPicker.html" 
+                    (dict "id" "f-picker-2" "color" "#999999" 
+                    "selectors" "re-1,re-2,raux" 
+                        "contextPostfix" $contextPostfix) }}
+                {{ partial "ColorPicker.html" 
+                    (dict "id" "b-picker-2" "color" "#000000" 
+                        "selectors" "rb-1,rb-2" 
+                        "contextPostfix" $contextPostfix) }}
+            {{ end }}
+        </div>
+    </div>
+</div>

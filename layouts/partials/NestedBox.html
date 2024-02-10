@@ -1,22 +1,18 @@
 
-{{ $sbid := .Get "sbid" }}
-{{ $seid := .Get "seid" }}
-{{ $postfix := "" }}
-{{ with .Parent.Params }}
-    {{ with .contextPostfix}}
-        {{ $postfix = . }}
-    {{ end }}
-{{ end }}
+{{ $sbid := .sbid }}
+{{ $seid := .seid }}
+{{ $postfix := .contextPostfix }}
+
 {{ $lsid := printf "ls-%s-%s" $sbid $postfix }}
-{{ with .Get "left_sid"}}
+{{ with .left_sid}}
     {{ $lsid = printf "%s-%s" . $postfix}}
 {{ end }}
 {{ $rsid := printf "rs-%s-%s" $sbid $postfix }}
-{{ with .Get "right_sid"}}
+{{ with .right_sid}}
     {{ $rsid = printf "%s-%s" . $postfix}}
 {{ end }}
 
-<div class="nested-out-box" id="{{ $sbid }}-{{ $postfix }}" style="--box-color: white;">
+<div class="nested-out-box" id="{{ $sbid }}-{{ $postfix }}" style="--box-color: black;">
     <div class="nested-side-box" id="{{ $lsid }}"></div>
     <div class="nested-in-box" id="{{ $seid }}-{{ $postfix }}" style="--box-color: white;"></div>
     <div class="nested-side-box" id="{{ $rsid }}"></div>

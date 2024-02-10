@@ -1,15 +1,9 @@
-{{ $contextPostfix := ""}}
-{{ with .Parent.Params }}
-    {{ with .contextPostfix}}
-        {{ $contextPostfix = . }}
-    {{ end }}
-{{ end }}
-{{ $pickerId := print (.Get "id") "-" $contextPostfix}}
-{{ $selectors := split (.Get "selectors") "," }}
+{{ $contextPostfix := .contextPostfix }}
+{{ $pickerId := print .id "-" .contextPostfix}}
+{{ $selectors := split .selectors "," }}
 
-<input class="color-picker" type="color" id="{{ $pickerId }}" value="{{ .Get "color"}}">
+<input class="color-picker" type="color" id="{{ $pickerId }}" value="{{ .color }}">
 <script>
-    {{ with .Get "selectors" }}
     var colorPicker = document.querySelector("#{{ $pickerId }}");
     setupColorPicker(colorPicker, (event) => {
         {{ range $selectors }}
@@ -19,6 +13,5 @@
 
     {{ range $selectors }}
     setStyleProperty(colorPicker.value, document.querySelector("#{{ . }}-{{ $contextPostfix }}"), '--box-color');
-    {{ end }}
     {{ end }}
 </script>
