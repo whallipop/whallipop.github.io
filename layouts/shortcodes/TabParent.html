@@ -2,6 +2,7 @@
 {{with .Get "direction" }} 
     {{ $direction = . }}
 {{end}}
+
 <div class="tabs-{{$direction}}-label">
     <div class="pattern-tabs" style="height: {{ .Get "height" }}">
         {{ .Inner }}

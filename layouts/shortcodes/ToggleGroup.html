@@ -1,5 +1,11 @@
 {{/*  must use before the canvas and together with toggleEnable and toggle Disable template  */}}
-{{ $toggleGroupId := .Get "toggleGroupId" }}
+{{/*  {{ $toggleGroupId := .Get "toggleGroupId" }}  */}}
 {{ $label := .Get "label"}}
-<label for="{{$toggleGroupId}}-{{$label}}" class="simple-toggle-label">{{$label}}</label>
-<input class="simple-toggle" type="checkbox" id="{{$toggleGroupId}}-{{$label}}" name="{{$toggleGroupId}}" {{ with .Get "checked" }} checked {{ end }}>
+{{ $contextPostfix := ""}}
+{{ with .Parent.Params }}
+    {{ with .tabId}}
+        {{ $contextPostfix = . }}
+    {{ end }}
+{{ end }}
+<label for="{{$label}}-{{$contextPostfix}}" class="simple-toggle-label">{{$label}}</label>
+<input class="simple-toggle" type="checkbox" id="{{$label}}-{{$contextPostfix}}" {{ with .Get "checked" }} checked {{ end }}>

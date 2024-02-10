@@ -3,7 +3,7 @@
 {{ $seid := .Get "seid" }}
 {{ $postfix := "" }}
 {{ with .Parent.Params }}
-    {{ with .canvasId}}
+    {{ with .contextPostfix}}
         {{ $postfix = . }}
     {{ end }}
 {{ end }}

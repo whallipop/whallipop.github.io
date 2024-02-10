@@ -41,26 +41,37 @@
 }
 
 .nested-out-box {
-height: 200px;
-width: 200px;
-background-color: var(--box-color);
-display: flex;
-align-items: center;
-justify-content: center;
+  height: 200px;
+  width: 200px;
+  background-color: var(--box-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .nested-in-box {
-height: 50px;
-width: 50px;
-background-color: var(--box-color);
+  height: 50px;
+  width: 50px;
+  background-color: var(--box-color);
+}
+
+.svg-graphics {
+  stroke: none;
+  fill:  var(--box-color);
+}
+
+.nested-side-box {
+  height: 15px;
+  width: 75px;
+  background-color: var(--box-color);
 }
 
 .interaction-of-color .color-palette {
-margin-top: 20px;
-display: flex;
-justify-content: center;
-column-gap: 2%;
-flex: 100%;
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  column-gap: 2%;
+  flex: 100%;
 }
 
 .interaction-of-color .color-picker {

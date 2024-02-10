@@ -1,9 +1,14 @@
 {{ if .Parent }}
-{{ $postfix := .Get "tabId" }}
-{{ $contentId := .Get "contentId" }}
+{{ $tabId := .Get "tabId"}}
+{{ $tabParentId := ""}}
+{{ with .Parent.Params }}
+    {{ with .contextPostfix}}
+        {{ $tabParentId = .}}
+    {{ end }}
+{{ end }}
 {{ $label := .Get "label"}}
-<input type="radio" id="{{$contentId}}-{{$postfix}}" name="{{$contentId}}" {{ with .Get "checked" }} checked {{ end }}>
-<label for="{{$contentId}}-{{$postfix}}" class="pattern-label">{{$label}}</label>
+<input type="radio" id="{{$tabId}}" name="{{$tabParentId}}" {{ with .Get "checked" }} checked {{ end }}>
+<label for="{{$tabId}}" class="pattern-label">{{$label}}</label>
 <div class="content">
     {{ .Inner }}
 </div>
