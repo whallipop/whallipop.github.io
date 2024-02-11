@@ -1,32 +1,24 @@
-
 {{ $contextPostfix := "default" }}
 {{ $tabGroupId := "default" }}
-{{ with .Parent.Params }}
-    {{ with .contextPostfix}}
-        {{ $contextPostfix = (print . $.Ordinal)}}
-        {{ $tabGroupId = . }}
-    {{ end }}
-{{ end }}
-{{ $label := .Get "label"}}
+{{ $label := "default"}}
 {{ $checked := ""}}
-{{ with .Get "checked"}}
-    {{ $checked = "yes"}}
+{{ with partial "Helper/TabHeader.html" .}}
+    {{ $contextPostfix = .contextPostfix }}
+    {{ $tabGroupId = .tabGroupId }}
+    {{ $label = .label}}
+    {{ $checked = .checked}}
 {{ end }}
+
 {{ $is4Colors := 3}}
 {{ with .Get "is4Colors"}}
     {{ $is4Colors = 4}}
-{{ end }}
-
-{{ $graphicType := "NestedTwoBox" }}
-{{ with .Get "graphicType"}}
-    {{ $graphicType = .}}
 {{ end }}
 
 {{ partial "TabFrame.html" (dict "tabId" $contextPostfix "label" $label "tabGroupId" $tabGroupId "checked" $checked) }}
 <div class="content">
     {{ partial "DropdownSelector.html" 
         (dict 
-            "label" "Show Aux Line" "contextPostfix" $contextPostfix
+            "contextPostfix" $contextPostfix
             "selectors" "NestedBox,XInBox"
         ) }}
     {{ partial "ToggleGroup.html" (dict "label" "Show Aux Line" "contextPostfix" $contextPostfix) }}
@@ -34,7 +26,6 @@
         {{ partial "ToggleDisable.html" . }}
         {{ partial "SVGColorPattern.html" 
             (dict 
-                "graphicType" $graphicType
                 "leftOutId" "lb-1" 
                 "leftInId" "le-1" 
                 "rightOutId" "rb-1" 
@@ -44,7 +35,6 @@
         {{ partial "ToggleEnable.html" . }}
         {{ partial "SVGColorPattern.html" 
             (dict 
-                "graphicType" $graphicType
                 "leftOutId" "lb-2" 
                 "leftInId" "le-2" 
                 "rightOutId" "rb-2" 

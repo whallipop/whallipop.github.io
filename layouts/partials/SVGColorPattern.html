@@ -1,11 +1,3 @@
-
-{{ $leftOutId := .leftOutId }}
-{{ $leftInId := .leftInId }}
-{{ $rightOutId := .rightOutId }}
-{{ $rightInId := .rightInId }}
-
-{{ $postfix := .contextPostfix }}
-
 {{ $showAuxline := 0 }}
 {{ $leftAuxId := print "laux-default-" $.Ordinal }}
 {{ $rightAuxId := print "raux-default-" $.Ordinal }}
@@ -16,11 +8,11 @@
 {{ end }}
 
 {{ $graphicInputDict := (dict
-    "postfix" $postfix
-    "leftOutId" $leftOutId
-    "leftInId" $leftInId
-    "rightOutId" $rightOutId
-    "rightInId" $rightInId
+    "postfix" .contextPostfix
+    "leftOutId" .leftOutId
+    "leftInId" .leftInId
+    "rightOutId" .rightOutId
+    "rightInId" .rightInId
     "showAuxline" $showAuxline
     "leftAuxId" $leftAuxId
     "rightAuxId" $rightAuxId

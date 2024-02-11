@@ -1,0 +1,21 @@
+
+{{ $contextPostfix := "default" }}
+{{ $tabGroupId := "default" }}
+{{ with .Parent.Params }}
+    {{ with .tabGroupId}}
+        {{ $contextPostfix = (print . $.Ordinal)}}
+        {{ $tabGroupId = . }}
+    {{ end }}
+{{ end }}
+{{ $label := .Get "label"}}
+{{ $checked := ""}}
+{{ with .Get "checked"}}
+    {{ $checked = "yes"}}
+{{ end }}
+
+{{ return (dict
+    "contextPostfix" $contextPostfix
+    "tabGroupId" $tabGroupId
+    "label" $label
+    "checked" $checked
+)}}

@@ -1,0 +1,44 @@
+{{ $contextPostfix := "default" }}
+{{ $tabGroupId := "default" }}
+{{ $label := "default"}}
+{{ $checked := ""}}
+{{ with partial "Helper/TabHeader.html" .}}
+    {{ $contextPostfix = .contextPostfix }}
+    {{ $tabGroupId = .tabGroupId }}
+    {{ $label = .label}}
+    {{ $checked = .checked}}
+{{ end }}
+
+
+{{ partial "TabFrame.html" (dict "tabId" $contextPostfix "label" $label "tabGroupId" $tabGroupId "checked" $checked) }}
+<div class="content">
+    {{ partial "DropdownSelector.html" 
+        (dict 
+            "contextPostfix" $contextPostfix
+            "selectors" "Mix-Rectangle,Mix-Circle,Mix-Cross"
+        ) }}
+    <div class="interaction-of-color">
+        {{ partial "SVGColorMixTwo.html" 
+            (dict 
+                "colorId1" "c1" 
+                "colorId2" "c2" 
+                "colorIdMix" "cMix"
+                "colorIdBg" "cBg"
+                "contextPostfix" $contextPostfix
+            ) }}
+        <div class="color-palette">
+            {{ partial "ColorPicker.html" 
+                (dict "id" "c-picker-1" "color" "#9468c9" 
+                    "selectors" "c1"  "contextPostfix" $contextPostfix) }}
+            {{ partial "ColorPicker.html" 
+                (dict "id" "c-picker-2" "color" "#a1489e" 
+                    "selectors" "c2" "contextPostfix" $contextPostfix) }}
+            {{ partial "ColorPicker.html" 
+                (dict "id" "c-picker-mix" "color" "#1a71cf" 
+                    "selectors" "cMix" "contextPostfix" $contextPostfix) }}
+            {{ partial "ColorPicker.html" 
+                (dict "id" "c-picker-bg" "color" "#314f70" 
+                    "selectors" "cBg" "contextPostfix" $contextPostfix) }}
+        </div>
+    </div>
+</div>

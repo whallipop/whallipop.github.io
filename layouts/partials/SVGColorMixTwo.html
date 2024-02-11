@@ -1,0 +1,19 @@
+{{ $graphicInputDict := (dict
+    "colorId1" .colorId1
+    "colorId2" .colorId2
+    "colorIdMix" .colorIdMix
+    "colorIdBg" .colorIdBg
+    "postfix" .contextPostfix
+)}}
+
+<div>
+    <div class="svg-select-mix-rectangle-option">
+        {{ partial "SVG/MixRectangle.html" $graphicInputDict }}
+    </div>
+    <div class="svg-select-mix-circle-option">
+        {{ partial "SVG/MixCircle.html" $graphicInputDict }}
+    </div>
+    <div class="svg-select-mix-cross-option">
+        {{ partial "SVG/MixCross.html" $graphicInputDict }}
+    </div>
+</div>

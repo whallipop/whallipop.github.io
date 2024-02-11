@@ -14,14 +14,22 @@ Click `tab` to change the plates of the cases.
 
 # Normal `<div>` Nested Box Color Pattern
 
-{{< TabParent height="100" direction="horizontal" contextPostfix="simpleColorPattern" >}}
+{{< TabParent height="100" direction="horizontal" tabGroupId="simpleColorPattern" >}}
     {{< TwoSidesNestedBox label="One Color Diff" checked="yes">}}
     {{< TwoSidesNestedBox label="Two Color Same" is4Colors="yes">}}
 {{< /TabParent >}}
 
 # SVG html Color Pattern
 
-{{< TabParent height="100" direction="horizontal" contextPostfix="svgColorPattern" >}}
+## "One Color" looks difference and "Two Color "look the same
+
+{{< TabParent height="100" direction="horizontal" tabGroupId="svgColorPattern" >}}
     {{< TwoSides label="One Color Diff" checked="yes">}}
     {{< TwoSides label="Two Color Same" is4Colors="yes">}}
+{{< /TabParent >}}
+
+## Color Mixing
+
+{{< TabParent height="100" direction="horizontal" tabGroupId="svgColorMixing" >}}
+    {{< TwoColorMix label="Find the mixing color" checked="yes">}}
 {{< /TabParent >}}

@@ -2,7 +2,7 @@
 {{ $contextPostfix := "default" }}
 {{ $tabGroupId := "default" }}
 {{ with .Parent.Params }}
-    {{ with .contextPostfix}}
+    {{ with .tabGroupId}}
         {{ $contextPostfix = (print . $.Ordinal)}}
         {{ $tabGroupId = . }}
     {{ end }}
