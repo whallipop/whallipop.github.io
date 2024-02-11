@@ -30,6 +30,7 @@ Click `tab` to change the plates of the cases.
 
 ## Color Mixing
 
-{{< TabParent height="100" direction="horizontal" tabGroupId="svgColorMixing" >}}
+{{< TabParent height="100" direction="horizontal" tabGroupId="f" >}}
     {{< TwoColorMix label="Find the mixing color" checked="yes">}}
+    {{< SameColorMix label="Mix same color cards" >}}
 {{< /TabParent >}}

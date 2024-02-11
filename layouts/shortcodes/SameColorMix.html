@@ -12,17 +12,17 @@
 
 {{ partial "TabFrame.html" (dict "tabId" $contextPostfix "label" $label "tabGroupId" $tabGroupId "checked" $checked) }}
 <div class="content">
-    {{ partial "DropdownSelector.html" 
+    {{/*  {{ partial "DropdownSelector.html" 
         (dict 
             "contextPostfix" $contextPostfix
             "selectors" "Mix-Rectangle,Mix-Circle,Mix-Cross"
-        ) }}
+        ) }}  */}}
     <div class="interaction-of-color">
-        {{ partial "SVGColorMixTwo.html" 
+        {{ partial "SVGColorMixSame.html" 
             (dict 
-                "colorId1" "c1" 
-                "colorId2" "c2" 
-                "colorIdMix" "cMix"
+                "colorId" "c" 
+                "colorIdMix1" "cMix1"
+                "colorIdMix2" "cMix2"
                 "colorIdBg" "cBg"
                 "postfix" $contextPostfix
             ) }}
@@ -30,21 +30,21 @@
             <label> Cards Color</label>
             {{ partial "ColorPicker.html" 
                 (dict "id" "c-picker-1" "color" "#1a71cf" 
-                    "selectors" "c1"  "contextPostfix" $contextPostfix) }}
-            {{ partial "ColorPicker.html" 
-                (dict "id" "c-picker-2" "color" "#a1489e" 
-                    "selectors" "c2" "contextPostfix" $contextPostfix) }}
+                    "selectors" "c"  "contextPostfix" $contextPostfix) }}
         </div>
         <div class="color-palette">
-            <label> Mixed Color</label>
+            <label> Mix Color</label>
             {{ partial "ColorPicker.html" 
-                (dict "id" "c-picker-mix" "color" "#9468c9" 
-                    "selectors" "cMix" "contextPostfix" $contextPostfix) }}
+                (dict "id" "c-picker-mix-1" "color" "#115daf" 
+                    "selectors" "cMix1" "contextPostfix" $contextPostfix) }}
+            {{ partial "ColorPicker.html" 
+                (dict "id" "c-picker-mix-2" "color" "#1b4f88" 
+                    "selectors" "cMix2" "contextPostfix" $contextPostfix) }}
         </div>
         <div class="color-palette">
             <label> Background Color</label>
             {{ partial "ColorPicker.html" 
-                (dict "id" "c-picker-bg" "color" "#314f70" 
+                (dict "id" "c-picker-bg" "color" "#8da3bb" 
                     "selectors" "cBg" "contextPostfix" $contextPostfix) }}
         </div>
     </div>
