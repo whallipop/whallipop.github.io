@@ -1,5 +1,8 @@
+{{ $selectors := split .selectors "," }}
 <select onchange="this.dataset.chosen = this.value;"
     class="svg-select" name="simple-select" id="simple-select-{{.contextPostfix}}">
-    <option value="NestedBox" selected="selected">NestedBox</option>
-    <option value="XInBox">XInBox</option>
+    {{ $firstSet := 1 }}
+    {{ range $selectors }}
+        <option value="{{.}}" {{if eq $firstSet 1 }} {{ $firstSet = 0 }} selected="selected"{{end}}>{{.}}</option>
+    {{ end }}
 </select>
