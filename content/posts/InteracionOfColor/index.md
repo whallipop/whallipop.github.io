@@ -24,6 +24,4 @@ Click `tab` to change the plates of the cases.
 {{< TabParent height="100" direction="horizontal" contextPostfix="svgColorPattern" >}}
     {{< TwoSides label="One Color Diff" checked="yes">}}
     {{< TwoSides label="Two Color Same" is4Colors="yes">}}
-    {{< TwoSides label="One Color Diff(X)" graphicType="XInBox">}}
-    {{< TwoSides label="Two Color Same(X)" is4Colors="yes" graphicType="XInBox">}}
 {{< /TabParent >}}

@@ -26,13 +26,11 @@
     "rightAuxId" $rightAuxId
 )}}
 
-{{ $graphicType := .graphicType}}
 <div>
-    {{ if eq $graphicType "XInBox"}}
+    <div class="svg-select-xinbox-option">
         {{ partial "SVG/XInBox.html" $graphicInputDict }}
-    {{ else }}
-    {{/*  default type  */}}
-    {{/*  {{ if eq $graphicType "NestedTwoBox"}}   */}}
-        {{ partial "SVG/NestedTwoBox.html" $graphicInputDict }}
-    {{ end }}
+    </div>
+    <div class="svg-select-nestedbox-option">
+        {{ partial "SVG/NestedBox.html" $graphicInputDict }}
+    </div>
 </div>

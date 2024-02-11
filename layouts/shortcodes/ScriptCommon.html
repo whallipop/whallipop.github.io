@@ -11,4 +11,11 @@
     function setStyle(event, target, propertyName) {
         setStyleProperty(event.target.value, target, propertyName);
     }
+
+    window.addEventListener("load",function(){
+        var dropdowns = document.querySelectorAll(".svg-select");
+        dropdowns.forEach((dropdown) => {
+            dropdown.dataset.chosen = dropdown.value;
+        });
+    },false);
 </script>

@@ -155,16 +155,41 @@
 /* #endregion */
 
 /* #region simple toggle*/
-.simple-toggle[type=checkbox] + .interaction-of-color .toggle-enable + div {
+.simple-toggle {
+  display: inline-block;
+}
+.simple-toggle[type=checkbox] ~ .interaction-of-color .toggle-enable + div {
   display: none;
 }
-.simple-toggle[type=checkbox] + .interaction-of-color .toggle-disable + div {
+.simple-toggle[type=checkbox] ~ .interaction-of-color .toggle-disable + div {
   display: inherit;
 }
-.simple-toggle[type=checkbox]:checked + .interaction-of-color .toggle-enable + div {
+.simple-toggle[type=checkbox]:checked ~ .interaction-of-color .toggle-enable + div {
   display: inherit;
 }
-.simple-toggle[type=checkbox]:checked + .interaction-of-color .toggle-disable + div {
+.simple-toggle[type=checkbox]:checked ~ .interaction-of-color .toggle-disable + div {
   display: none;
+}
+/* #endregion */
+
+/* #region svg select */
+.svg-select {
+  display: inline-block;
+}
+
+.svg-select-nestedbox-option {
+  display: none;
+}
+
+select[data-chosen="NestedBox"].svg-select ~ .interaction-of-color .svg-select-nestedbox-option {
+  display: inherit;
+}
+
+.svg-select-xinbox-option {
+  display: none;
+}
+
+select[data-chosen="XInBox"].svg-select ~ .interaction-of-color .svg-select-xinbox-option {
+  display: inherit;
 }
 /* #endregion */

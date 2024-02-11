@@ -24,6 +24,7 @@
 
 {{ partial "TabFrame.html" (dict "tabId" $contextPostfix "label" $label "tabGroupId" $tabGroupId "checked" $checked) }}
 <div class="content">
+    {{ partial "DropdownSelector.html" (dict "label" "Show Aux Line" "contextPostfix" $contextPostfix) }}
     {{ partial "ToggleGroup.html" (dict "label" "Show Aux Line" "contextPostfix" $contextPostfix) }}
     <div class="interaction-of-color">
         {{ partial "ToggleDisable.html" . }}
