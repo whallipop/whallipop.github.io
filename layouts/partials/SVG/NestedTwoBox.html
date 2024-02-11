@@ -1,0 +1,23 @@
+<svg height="200px" stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 360 180" width="360.0px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs/>
+    <g id="left-1">
+        <path d="M0 0L180 0L180 180L0 180L0 0Z"
+            class="svg-graphics" id="{{ .leftOutId }}-{{ .postfix }}" style="--box-color: black;"/>
+        <path d="M59.347 59.347L120.653 59.347L120.653 120.653L59.347 120.653L59.347 59.347Z"
+            class="svg-graphics" id="{{ .leftInId }}-{{ .postfix }}" style="--box-color: white;"/>
+    </g>
+    <g id="right-2">
+        <path d="M180 0L360 0L360 180L180 180L180 0Z"
+            class="svg-graphics" id="{{ .rightOutId }}-{{ .postfix }}" style="--box-color: black;"/>
+        <path d="M239.347 59.347L300.653 59.347L300.653 120.653L239.347 120.653L239.347 59.347Z"
+            class="svg-graphics" id="{{ .rightInId }}-{{ .postfix }}" style="--box-color: white;"/>
+    </g>
+    {{ if eq .showAuxline 1 }}
+    <g id="layer-connected">
+        <path d="M120.706 83.0308L180.05 83.4866L179.95 96.5134L120.606 96.0577L120.706 83.0308Z" 
+            class="svg-graphics" id="{{ .leftAuxId }}-{{ .postfix }}" style="--box-color: white;"/>
+        <path d="M180.15 83.0308L239.494 83.4866L239.394 96.5134L180.05 96.0577L180.15 83.0308Z"
+            class="svg-graphics" id="{{ .rightAuxId }}-{{ .postfix }}" style="--box-color: white;"/>
+    </g>
+    {{ end }}
+</svg>

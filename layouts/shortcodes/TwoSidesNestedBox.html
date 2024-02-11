@@ -21,10 +21,14 @@
 <div class="content">
     {{ partial "ToggleGroup.html" (dict "label" "Show Aux Line" "contextPostfix" $contextPostfix) }}
     <div class="interaction-of-color">
-        {{ partial "ToggleDisable.html" . }} {{ partial "NestedBox.html" (dict "sbid" "sb-1" "seid" "se-1" "contextPostfix" $contextPostfix) }}
-        {{ partial "ToggleDisable.html" . }} {{ partial "NestedBox.html" (dict "sbid" "sb-2" "seid" "se-2" "contextPostfix" $contextPostfix) }}
-        {{ partial "ToggleEnable.html" . }} {{ partial "NestedBox.html" (dict "sbid" "sb-1-e" "seid" "se-1-e" "right_sid" "sb-r1-e" "contextPostfix" $contextPostfix) }}
-        {{ partial "ToggleEnable.html" . }} {{ partial "NestedBox.html" (dict "sbid" "sb-2-e" "seid" "se-2-e" "left_sid" "sb-l1-e" "contextPostfix" $contextPostfix) }}
+        {{ partial "ToggleDisable.html" . }} {{ partial "Deprecated/NestedBox.html" 
+            (dict "sbid" "sb-1" "seid" "se-1" "contextPostfix" $contextPostfix) }}
+        {{ partial "ToggleDisable.html" . }} {{ partial "Deprecated/NestedBox.html" 
+            (dict "sbid" "sb-2" "seid" "se-2" "contextPostfix" $contextPostfix) }}
+        {{ partial "ToggleEnable.html" . }} {{ partial "Deprecated/NestedBox.html" 
+            (dict "sbid" "sb-1-e" "seid" "se-1-e" "right_sid" "sb-r1-e" "contextPostfix" $contextPostfix) }}
+        {{ partial "ToggleEnable.html" . }} {{ partial "Deprecated/NestedBox.html" 
+            (dict "sbid" "sb-2-e" "seid" "se-2-e" "left_sid" "sb-l1-e" "contextPostfix" $contextPostfix) }}
         <div class="color-palette">
             {{ if eq $is4Colors 3}}
                 {{ partial "ColorPicker.html" (dict "id" "b-picker-1" "color" "#A0BEDC" "selectors" "sb-1,sb-1-e" "contextPostfix" $contextPostfix) }}

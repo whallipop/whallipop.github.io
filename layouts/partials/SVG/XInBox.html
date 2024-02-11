@@ -1,0 +1,26 @@
+
+<svg height="200px" stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 360 180" width="100%" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:vectornator="http://vectornator.io" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs/>
+    <g id="left-1">
+        <path d="M0 0L180 0L180 180L0 180L0 0Z" 
+            class="svg-graphics" id="{{ .leftOutId }}-{{ .postfix }}" style="--box-color: white;"/>
+        <path d="M146.938 19.9062L89.9375 77.4062L32.3125 20.5L19.625 33.375L77.2188 90.25L20.2188 147.719L33.0625 160.469L90.0625 102.938L147.688 159.844L160.375 147L102.781 90.125L159.781 32.625L146.938 19.9062Z" 
+            class="svg-graphics" id="{{ .leftInId }}-{{ .postfix }}" style="--box-color: white;"/>
+    </g>
+
+    <g id="right-2">
+        <path d="M179.943 0.17692L359.943 0.17692L359.943 180.177L179.943 180.177L179.943 0.17692Z" 
+            class="svg-graphics" id="{{ .rightOutId }}-{{ .postfix }}" style="--box-color: white;"/>
+        <path d="M326.938 19.9062L269.938 77.4062L212.312 20.5L199.625 33.375L257.219 90.25L200.219 147.719L213.062 160.469L270.062 102.938L327.688 159.844L340.375 147L282.781 90.125L339.781 32.625L326.938 19.9062Z"
+            class="svg-graphics" id="{{ .rightInId }}-{{ .postfix }}" style="--box-color: white;"/>
+    </g>
+
+    {{ if eq .showAuxline 1 }}
+    <g id="layer-connected">
+        <path d="M147.239 20.2485L180 20.5001L179.9 33.5269L147.139 33.2754L147.239 20.2485Z"
+            class="svg-graphics" id="{{ .leftAuxId }}-{{ .postfix }}" style="--box-color: white;"/>
+        <path d="M180.1 20.2485L212.861 20.5001L212.761 33.5269L180 33.2754L180.1 20.2485Z"
+            class="svg-graphics" id="{{ .rightAuxId }}-{{ .postfix }}" style="--box-color: white;"/>
+    </g>
+    {{ end }}
+</svg>
