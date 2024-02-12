@@ -1,0 +1,77 @@
+{{ $contextPostfix := "default" }}
+{{ $tabGroupId := "default" }}
+{{ $label := "default"}}
+{{ $checked := ""}}
+{{ with partial "Helper/TabHeader.html" .}}
+    {{ $contextPostfix = .contextPostfix }}
+    {{ $tabGroupId = .tabGroupId }}
+    {{ $label = .label}}
+    {{ $checked = .checked}}
+{{ end }}
+
+
+{{ partial "TabFrame.html" (dict "tabId" $contextPostfix "label" $label "tabGroupId" $tabGroupId "checked" $checked) }}
+<div class="content">
+    <div class="interaction-of-color">
+        {{ partial "SVGColorMixThreeWays.html" 
+            (dict 
+                "colorId1" "c1" 
+                "colorId2" "c2" 
+                "colorIdMix1" "cMix-1"
+                "colorIdMix2" "cMix-2"
+                "colorIdMix3" "cMix-3"
+                "colorIdBg" "cBg"
+                "postfix" $contextPostfix
+        ) }}
+        <div class="color-palette-label">
+            <label> Cards Color</label>
+            <div class="color-palette">
+                {{ partial "ColorPicker.html" 
+                    (dict "id" "c-picker-1" "color" "#445464" 
+                        "selectors" "c1"  "contextPostfix" $contextPostfix) 
+                }}
+                {{ partial "ColorPicker.html" 
+                    (dict "id" "c-picker-2" "color" "#8898a8" 
+                        "selectors" "c2"  "contextPostfix" $contextPostfix) 
+                }}
+            </div>
+            <label> Mixed Color</label>
+            <div class="color-palette">
+                {{ partial "ColorPicker.html" 
+                    (dict "id" "c-picker-mix-1" "color" "#8696a6" 
+                        "selectors" "cMix-1" "contextPostfix" $contextPostfix) 
+                }}
+                {{ partial "ColorPicker.html" 
+                    (dict "id" "c-picker-mix-2" "color" "#667688" 
+                        "selectors" "cMix-2"  "contextPostfix" $contextPostfix) 
+                }}
+                {{ partial "ColorPicker.html" 
+                    (dict "id" "c-picker-mix-3" "color" "#556575" 
+                        "selectors" "cMix-3"  "contextPostfix" $contextPostfix) 
+                }}
+            </div>
+            <label> Background Color</label>
+            <div class="color-palette">
+                {{ partial "ColorPicker.html" 
+                    (dict "id" "c-picker-bg" "color" "#112233" 
+                        "selectors" "cBg" "contextPostfix" $contextPostfix) 
+                }}
+            </div>
+            <label> Random Colors</label>
+            <div class="color-palette">
+                {{ partial "RandomButton.html" 
+                    (dict "postfix" $contextPostfix
+                        "label" "color"
+                        "selectors" "c-picker-1,c-picker-2"
+                        "emptyIds" "c-picker-mix-1,c-picker-mix-2,c-picker-mix-3")
+                }}
+                {{ partial "RandomButton.html" 
+                    (dict "postfix" $contextPostfix
+                        "label" "color+bg"
+                        "selectors" "c-picker-1,c-picker-2,c-picker-bg"
+                        "emptyIds" "c-picker-mix-1,c-picker-mix-2,c-picker-mix-3")
+                }}
+            </div>
+        </div>
+    </div>
+</div>

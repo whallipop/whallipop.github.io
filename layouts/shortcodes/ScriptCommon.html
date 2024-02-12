@@ -1,4 +1,5 @@
 <script>
+    const changeEvent = new Event('change');
     function setupColorPicker(picker, setStyleLambda) {
         picker.addEventListener("input", setStyleLambda, false);
         picker.addEventListener("change", setStyleLambda, false);
@@ -10,6 +11,30 @@
 
     function setStyle(event, target, propertyName) {
         setStyleProperty(event.target.value, target, propertyName);
+    }
+
+
+    function setStyleForColorPickerId(targetId, targetColor){
+        var target = document.querySelector("#"+targetId);
+        console.log(targetId)
+        target.value = targetColor;
+        // Dispatch it.
+        target.dispatchEvent(changeEvent);
+    }
+
+    function intToRGB(i){
+        var c = (i & 0x00FFFFFF)
+            .toString(16)
+            .toUpperCase();
+        return "00000".substring(0, 6 - c.length) + c;
+    }
+
+    function randomColor(targetId, propertyName){
+        var target = document.querySelector("#"+targetId);
+        var randomColor = intToRGB(Math.floor(Math.random()*16777215));
+        target.value = "#" + randomColor;
+        // Dispatch it.
+        target.dispatchEvent(changeEvent);
     }
 
     window.addEventListener("load",function(){

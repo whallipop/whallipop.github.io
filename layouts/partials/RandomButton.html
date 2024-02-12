@@ -1,0 +1,7 @@
+{{ $selectors := split .selectors "," }}
+{{ $emptyIds := split .emptyIds "," }}
+
+{{ $postfix := .postfix}}
+<button class="canvas-button" role="button"
+    onclick="{{ range $selectors }} randomColor('{{.}}-{{$postfix}}'); {{ end }} 
+        {{ range $emptyIds }} setStyleForColorPickerId('{{.}}-{{$postfix}}','#000000'); {{ end }}">{{.label}}</button>

@@ -12,12 +12,12 @@ draft = false
 
 Click `tab` to change the plates of the cases.
 
-# Normal `<div>` Nested Box Color Pattern
+<!-- # Normal `<div>` Nested Box Color Pattern
 
 {{< TabParent height="100" direction="horizontal" tabGroupId="simpleColorPattern" >}}
     {{< TwoSidesNestedBox label="One Color Diff" checked="yes">}}
     {{< TwoSidesNestedBox label="Two Color Same" is4Colors="yes">}}
-{{< /TabParent >}}
+{{< /TabParent >}} -->
 
 # SVG html Color Pattern
 
@@ -33,4 +33,5 @@ Click `tab` to change the plates of the cases.
 {{< TabParent height="100" direction="horizontal" tabGroupId="f" >}}
     {{< TwoColorMix label="Find the mixing color" checked="yes">}}
     {{< SameColorMix label="Mix same color cards" >}}
+    {{< TwoColorMixInThreeWay label="3 ways Overlap">}}
 {{< /TabParent >}}
