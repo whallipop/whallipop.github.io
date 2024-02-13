@@ -1,0 +1,11 @@
+<script>
+    function triggerAllColorPickerOnce(){
+        var targets = document.querySelectorAll(".color-picker");
+        // Dispatch it.
+        targets.forEach((target)=>{
+            const changeEvent = new Event('change');
+            target.dispatchEvent(changeEvent);
+        });
+    }
+    triggerAllColorPickerOnce();
+</script>

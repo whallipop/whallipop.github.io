@@ -32,10 +32,15 @@
   width: 100%;
   height: 100%;
   --ioc-background: white;
-  display: flex;
+  /* display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: center;
+  justify-content: center; */
+  display: grid;
+  grid-template-areas: 
+            "control-palette color-palette"
+            "result-palette result-palette";
+  grid-template-columns: auto auto;
   background-color: var(--ioc-background);
   border-radius: 16px;
   box-shadow: 3px 3px 3px 3px var(--shadow-half-1), -3px -3px 3px 3px var(--shadow-hafl-2);
@@ -69,6 +74,33 @@
   background-color: var(--box-color);
 }
 
+.interaction-of-color .control-palette {
+  flex: 100%;
+  margin-top: 20px;
+  display: flex;
+  column-gap: 3%;
+  justify-content: left;
+  flex-wrap: wrap;
+}
+.interaction-of-color .control-palette-label .control-palette {
+  margin: 0px;
+  column-gap: 10px;
+}
+.interaction-of-color .control-palette-label {
+  grid-area: control-palette;
+  flex: auto;
+  margin-bottom: 20px;
+  margin-left: 5%;
+  margin-right: 5%;
+  /* column-gap: 3%; */
+  display: grid;
+  column-gap: 2%;
+  grid-template-columns: auto 1fr;
+  /* grid-template-areas: "label colors"; */
+  justify-items: left;
+  /* justify-content: center; */
+}
+
 .interaction-of-color .color-palette {
   flex: 100%;
   margin-top: 20px;
@@ -79,36 +111,37 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(50px, auto)); */
   /* grid-template-columns: repeat(auto-fill, minmax(min(50px, 100%), 2fr)); */
-  justify-content: center;
+  justify-content: left;
   flex-wrap: wrap;
 }
 .interaction-of-color .color-palette-label .color-palette {
   margin: 0px;
   column-gap: 10px;
-  justify-self: left;
   /* justify-content: space-around; */
   /* display: grid; */
   /* grid-template-columns: repeat(auto-fit, minmax(50px, auto)); */
 }
 .interaction-of-color .color-palette-label {
+  grid-area: color-palette;
   flex: auto;
-  margin-top: 20px;
+  margin-bottom: 20px;
   margin-left: 5%;
   margin-right: 5%;
-  margin-left: 50px;
-  margin-right: 50px;
   /* column-gap: 3%; */
   display: grid;
   column-gap: 2%;
   grid-template-columns: auto 1fr;
   /* grid-template-areas: "label colors"; */
-  justify-items: center;
+  justify-items: left;
   /* justify-content: center; */
 }
 
-.interaction-of-color .color-palette-label label {
+.interaction-of-color label {
   color: #888;
-  justify-self: left;
+}
+
+.interaction-of-color .result-palette {
+  grid-area: result-palette;
 }
 /* #endregion */
 
@@ -196,10 +229,10 @@
   display: none;
 }
 .simple-toggle[type=checkbox] ~ .interaction-of-color .toggle-disable + div {
-  display: inherit;
+  display: block;
 }
 .simple-toggle[type=checkbox]:checked ~ .interaction-of-color .toggle-enable + div {
-  display: inherit;
+  display: block;
 }
 .simple-toggle[type=checkbox]:checked ~ .interaction-of-color .toggle-disable + div {
   display: none;
@@ -207,6 +240,11 @@
 /* #endregion */
 
 /* #region svg select */
+.svg-canvas {
+  width: 50%;
+  justify-self: center;
+}
+
 .svg-select {
   display: inline-block;
 }
@@ -215,35 +253,35 @@
   display: none;
 }
 select[data-chosen="NestedBox"].svg-select ~ .interaction-of-color .svg-select-nestedbox-option {
-  display: inherit;
+  display: block;
 }
 
 .svg-select-xinbox-option {
   display: none;
 }
 select[data-chosen="XInBox"].svg-select ~ .interaction-of-color .svg-select-xinbox-option {
-  display: inherit;
+  display: block;
 }
 
 .svg-select-mix-rectangle-option {
   display: none;
 }
 select[data-chosen="Mix-Rectangle"].svg-select ~ .interaction-of-color .svg-select-mix-rectangle-option {
-  display: inherit;
+  display: block;
 }
 
 .svg-select-mix-circle-option {
   display: none;
 }
 select[data-chosen="Mix-Circle"].svg-select ~ .interaction-of-color .svg-select-mix-circle-option {
-  display: inherit;
+  display: block;
 }
 
 .svg-select-mix-cross-option {
   display: none;
 }
 select[data-chosen="Mix-Cross"].svg-select ~ .interaction-of-color .svg-select-mix-cross-option {
-  display: inherit;
+  display: block;
 }
 /* #endregion */
 

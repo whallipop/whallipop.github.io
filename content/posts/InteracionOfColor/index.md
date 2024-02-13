@@ -35,3 +35,6 @@ Click `tab` to change the plates of the cases.
     {{< SameColorMix label="Mix same color cards" >}}
     {{< TwoColorMixInThreeWay label="3 ways Overlap">}}
 {{< /TabParent >}}
+
+
+{{< ScriptCommonEnd >}}

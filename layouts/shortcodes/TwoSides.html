@@ -23,27 +23,16 @@
         ) }}
     {{ partial "ToggleGroup.html" (dict "label" "Show Aux Line" "contextPostfix" $contextPostfix) }}
     <div class="interaction-of-color">
-        {{ partial "ToggleDisable.html" . }}
-        {{ partial "SVGColorPattern.html" 
-            (dict 
-                "leftOutId" "lb-1" 
-                "leftInId" "le-1" 
-                "rightOutId" "rb-1" 
-                "rightInId" "re-1" 
-                "contextPostfix" $contextPostfix
-            ) }}
-        {{ partial "ToggleEnable.html" . }}
-        {{ partial "SVGColorPattern.html" 
-            (dict 
-                "leftOutId" "lb-2" 
-                "leftInId" "le-2" 
-                "rightOutId" "rb-2" 
-                "rightInId" "re-2" 
-                "showAuxline" "yes" 
-                "leftAuxId" "laux" 
-                "rightAuxId" "raux"
-                "contextPostfix" $contextPostfix
-            ) }}
+        <div class="control-palette-label">
+            {{ $sliderInfo := (dict
+                "label" "Scale"
+                "id" "sl-1"
+                "postfix" $contextPostfix
+                "min" "0"
+                "max" "100"
+            )}}
+            {{ partial "MinMaxSlider.html" $sliderInfo}}
+        </div>
         <div class="color-palette-label">
             {{ if eq $is4Colors 3}}
                 <label> Base Color</label>
@@ -88,6 +77,31 @@
                             "contextPostfix" $contextPostfix) }}
                 </div>
             {{ end }}
+        </div>
+        <div class="result-palette">
+            {{ partial "ToggleDisable.html" . }}
+            {{ partial "SVGColorPattern.html" 
+                (dict 
+                    "leftOutId" "lb-1" 
+                    "leftInId" "le-1" 
+                    "rightOutId" "rb-1" 
+                    "rightInId" "re-1" 
+                    "contextPostfix" $contextPostfix
+                )
+            }}
+            {{ partial "ToggleEnable.html" . }}
+            {{ partial "SVGColorPattern.html" 
+                (dict 
+                    "leftOutId" "lb-2" 
+                    "leftInId" "le-2" 
+                    "rightOutId" "rb-2" 
+                    "rightInId" "re-2" 
+                    "showAuxline" "yes" 
+                    "leftAuxId" "laux" 
+                    "rightAuxId" "raux"
+                    "contextPostfix" $contextPostfix
+                )
+            }}
         </div>
     </div>
 </div>

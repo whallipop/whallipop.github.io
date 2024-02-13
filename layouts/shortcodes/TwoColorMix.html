@@ -18,14 +18,37 @@
             "selectors" "Mix-Rectangle,Mix-Circle,Mix-Cross"
         ) }}
     <div class="interaction-of-color">
-        {{ partial "SVGColorMixTwo.html" 
-            (dict 
-                "colorId1" "c1" 
-                "colorId2" "c2" 
-                "colorIdMix" "cMix"
-                "colorIdBg" "cBg"
+        <div class="control-palette-label">
+            {{ $sliderInfo := (dict
+                "label" "Result Scale"
+                "id" "sl-1"
                 "postfix" $contextPostfix
-            ) }}
+                "min" "0"
+                "max" "100"
+            )}}
+            {{ partial "MinMaxSlider.html" $sliderInfo}}
+            <label> Random Colors</label>
+            <div class="control-palette">
+                {{ partial "RandomButton.html" 
+                    (dict "postfix" $contextPostfix
+                        "label" "1+2"
+                        "selectors" "c-picker-1,c-picker-2"
+                        "emptyIds" "c-picker-mix")
+                }}
+                {{ partial "RandomButton.html" 
+                    (dict  "postfix" $contextPostfix
+                        "label" "1+mix"
+                        "selectors" "c-picker-1,c-picker-mix"
+                        "emptyIds" "c-picker-2")
+                }}
+                {{ partial "RandomButton.html" 
+                    (dict  "postfix" $contextPostfix
+                        "label" "2+mix"
+                        "selectors" "c-picker-2,c-picker-mix"
+                        "emptyIds" "c-picker-1")
+                }}
+            </div>
+        </div>
         <div class="color-palette-label">
             <label> Cards Color</label>
             <div class="color-palette">
@@ -52,27 +75,16 @@
                         "selectors" "cBg" "contextPostfix" $contextPostfix) 
                 }}
             </div>
-            <label> Random Colors</label>
-            <div class="color-palette">
-                {{ partial "RandomButton.html" 
-                    (dict "postfix" $contextPostfix
-                        "label" "1+2"
-                        "selectors" "c-picker-1,c-picker-2"
-                        "emptyIds" "c-picker-mix")
-                }}
-                {{ partial "RandomButton.html" 
-                    (dict  "postfix" $contextPostfix
-                        "label" "1+mix"
-                        "selectors" "c-picker-1,c-picker-mix"
-                        "emptyIds" "c-picker-2")
-                }}
-                {{ partial "RandomButton.html" 
-                    (dict  "postfix" $contextPostfix
-                        "label" "2+mix"
-                        "selectors" "c-picker-2,c-picker-mix"
-                        "emptyIds" "c-picker-1")
-                }}
-            </div>
+        </div>
+        <div class="result-palette">
+            {{ partial "SVGColorMixTwo.html" 
+                (dict 
+                    "colorId1" "c1" 
+                    "colorId2" "c2" 
+                    "colorIdMix" "cMix"
+                    "colorIdBg" "cBg"
+                    "postfix" $contextPostfix
+                ) }}
         </div>
     </div>
 </div>

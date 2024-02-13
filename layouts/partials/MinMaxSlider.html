@@ -1,0 +1,7 @@
+<label> {{.label}}</label>
+<div>
+    {{/*  <label for="{{.id}}-{{.postfix}}">{{.label}}</label>  */}}
+    <input style="width: 100%;" type="range" id="{{.id}}-{{.postfix}}" name="{{.label}}-{{.postfix}}"
+         min="{{.min}}" max="{{.max}}" value="{{.value}}"
+         onchange="" />
+</div>

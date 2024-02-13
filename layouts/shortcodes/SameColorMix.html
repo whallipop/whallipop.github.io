@@ -18,14 +18,25 @@
             "selectors" "Mix-Rectangle,Mix-Circle"
         ) }}
     <div class="interaction-of-color">
-        {{ partial "SVGColorMixSame.html" 
-            (dict 
-                "colorId" "c" 
-                "colorIdMix1" "cMix1"
-                "colorIdMix2" "cMix2"
-                "colorIdBg" "cBg"
+        <div class="control-palette-label">
+            {{ $sliderInfo := (dict
+                "label" "Scale"
+                "id" "sl-1"
                 "postfix" $contextPostfix
-        ) }}
+                "min" "0"
+                "max" "100"
+            )}}
+            {{ partial "MinMaxSlider.html" $sliderInfo}}
+            <label> Random Colors</label>
+            <div class="control-palette">
+                {{ partial "RandomButton.html" 
+                    (dict "postfix" $contextPostfix
+                        "label" "card+background" 
+                        "selectors" "c-picker,c-picker-bg"
+                        "emptyIds" "c-picker-mix-1,c-picker-mix-2")
+                }}
+            </div>
+        </div>
         <div class="color-palette-label">
             <label> Cards Color</label>
             <div class="color-palette">
@@ -48,15 +59,16 @@
                     (dict "id" "c-picker-bg" "color" "#8da3bb" 
                         "selectors" "cBg" "contextPostfix" $contextPostfix) }}
             </div>
-            <label> Random Colors</label>
-            <div class="color-palette">
-                {{ partial "RandomButton.html" 
-                    (dict "postfix" $contextPostfix
-                        "label" "card+background" 
-                        "selectors" "c-picker,c-picker-bg"
-                        "emptyIds" "c-picker-mix-1,c-picker-mix-2")
-                }}
-            </div>
+        </div>
+        <div class="result-palette">
+            {{ partial "SVGColorMixSame.html" 
+                (dict 
+                    "colorId" "c" 
+                    "colorIdMix1" "cMix1"
+                    "colorIdMix2" "cMix2"
+                    "colorIdBg" "cBg"
+                    "postfix" $contextPostfix
+            ) }}
         </div>
     </div>
 </div>
