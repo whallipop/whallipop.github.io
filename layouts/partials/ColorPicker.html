@@ -5,17 +5,11 @@
 <input class="color-picker" type="color" id="{{ $pickerId }}" value="{{ .color }}">
 <script>
     var colorPicker = document.querySelector("#{{ $pickerId }}");
-    setupColorPicker(colorPicker, (event) => {
+    setupInputValueBinding(colorPicker, (event) => {
         {{ range $selectors }}
         document.querySelectorAll("#{{ . }}-{{ $contextPostfix }}").forEach((targetItem) => {
             setStyle(event, targetItem, '--box-color');
           });
         {{ end }}
     });
-
-    {{ range $selectors }}
-    document.querySelectorAll("#{{ . }}-{{ $contextPostfix }}").forEach((targetItem) => {
-        setStyleProperty(colorPicker.value, targetItem, '--box-color');
-      });
-    {{ end }}
 </script>

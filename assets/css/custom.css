@@ -142,6 +142,7 @@
 
 .interaction-of-color .result-palette {
   grid-area: result-palette;
+  /* justify-content: center; */
 }
 /* #endregion */
 
@@ -241,8 +242,11 @@
 
 /* #region svg select */
 .svg-canvas {
-  width: 50%;
-  justify-self: center;
+  --width-percentage: 80%;
+  width: var(--width-percentage);
+  /* --neg-width-percentage: calc((100% - var(--width-percentage))*0.5);
+  transform: translate(var(--neg-width-percentage),0); */
+  margin: auto;
 }
 
 .svg-select {

@@ -1,8 +1,13 @@
 <script>
+    function setupSlideEvent(slider, setStyleLambda) {
+        slider.addEventListener("change", setStyleLambda, false);
+        slider.addEventListener("drag", setStyleLambda, false);
+    }
+    
     const changeEvent = new Event('change');
-    function setupColorPicker(picker, setStyleLambda) {
-        picker.addEventListener("input", setStyleLambda, false);
-        picker.addEventListener("change", setStyleLambda, false);
+    function setupInputValueBinding(inputController, setStyleLambda) {
+        inputController.addEventListener("input", setStyleLambda, false);
+        inputController.addEventListener("change", setStyleLambda, false);
     }
 
     function setStyleProperty(propertyValue, target, propertyName) {
@@ -11,6 +16,10 @@
 
     function setStyle(event, target, propertyName) {
         setStyleProperty(event.target.value, target, propertyName);
+    }
+    
+    function setStylePercentage(event, target, propertyName) {
+        setStyleProperty(event.target.value + "%", target, propertyName);
     }
 
 

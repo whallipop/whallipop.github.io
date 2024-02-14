@@ -20,14 +20,12 @@
     <div class="interaction-of-color">
         <div class="control-palette-label">
             {{ $sliderInfo := (dict
-                "label" "Result Scale"
+                "label" "Scale"
                 "id" "sl-1"
                 "postfix" $contextPostfix
-                "min" "0"
-                "max" "100"
             )}}
             {{ partial "MinMaxSlider.html" $sliderInfo}}
-            <label> Random Colors</label>
+            <label> Random</label>
             <div class="control-palette">
                 {{ partial "RandomButton.html" 
                     (dict "postfix" $contextPostfix
