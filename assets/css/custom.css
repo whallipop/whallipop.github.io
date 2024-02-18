@@ -94,7 +94,7 @@
   margin-right: 5%;
   /* column-gap: 3%; */
   display: grid;
-  column-gap: 2%;
+  column-gap: 5%;
   grid-template-columns: auto 1fr;
   /* grid-template-areas: "label colors"; */
   justify-items: left;
@@ -129,7 +129,7 @@
   margin-right: 5%;
   /* column-gap: 3%; */
   display: grid;
-  column-gap: 2%;
+  column-gap: 5%;
   grid-template-columns: auto 1fr;
   /* grid-template-areas: "label colors"; */
   justify-items: left;
@@ -138,6 +138,7 @@
 
 .interaction-of-color label {
   color: #888;
+  /* align-self: center; */
 }
 
 .interaction-of-color .result-palette {
@@ -168,7 +169,7 @@
 }
 .content {
   background: var(--tab-color-on);
-  border-radius: 0 16px 16px 16px;
+  border-radius: 0 0px 16px 16px;
   padding: 20px;
   /* border: 5px solid #8e279b; */
   display: none;
@@ -202,7 +203,7 @@
 
 .tabs-horizontal-label .pattern-tabs {
   grid-template-rows: auto minmax(0, 1fr);
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
 }
 .tabs-horizontal-label .pattern-label {
   border-radius: 8px 8px 0 0;
