@@ -5,6 +5,7 @@ draft = false
 +++
 
 {{< ScriptCommon >}}
+<!-- {{< PlotlyDraw json="test.json" >}} -->
 
 {{<lead>}}
  You should always doubt the color you see with your eyes. 

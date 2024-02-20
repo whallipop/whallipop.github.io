@@ -174,11 +174,11 @@
   /* border: 5px solid #8e279b; */
   display: none;
 }
-[type=radio]:checked + .pattern-label {
+.pattern-tabs [type=radio]:checked + .pattern-label {
   background: var(--tab-color-on);
   z-index: 2;
 }
-[type=radio]:checked + .pattern-label + .content {
+.pattern-tabs [type=radio]:checked + .pattern-label + .content {
   /* background: white; */
   display: block;
 }
@@ -323,5 +323,63 @@ select[data-chosen="Mix-Cross"].svg-select ~ .interaction-of-color .svg-select-m
   filter: saturate(0.2) opacity(0.5);
   -webkit-filter: saturate(0.2) opacity(0.5);
   cursor: not-allowed;
+}
+/* #endregion */
+
+/* #region absolute corner style */
+.side-button {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  padding: 0;
+  font-weight: bolder;
+  font-size:larger;
+  width: 80px;
+  height: 80px;
+  background:#9090c5;
+  display: flex;
+}
+
+.side-button label {
+  margin: auto;
+}
+
+.side-button-checkbox {
+  display: none;
+}
+
+.side-button-checkbox[type=checkbox]:checked ~ .side-button {
+  background: #882375;
+  box-shadow: 0 0 0 0;
+}
+
+.custom-plotly-canvas {
+  position: fixed;
+  bottom: 100px;
+  right: 10px;
+  width: 450px;
+  height: 50%;
+  background-color: white;
+  /* border: 5px solid #8e279b; */
+  border-radius: 16px;
+  box-shadow: 3px 3px 3px 3px var(--shadow-half-1), -3px -3px 3px 3px var(--shadow-hafl-2);
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  visibility: hidden;
+}
+
+.side-button-checkbox[type=checkbox]:checked ~ .custom-plotly-canvas {
+  visibility: visible;
+}
+
+.custom-plotly {
+  width: 90%;
+  height: 80%;
+}
+
+.modebar{
+  display: none !important;
 }
 /* #endregion */
