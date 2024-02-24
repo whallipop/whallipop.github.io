@@ -1,0 +1,16 @@
+{{ if .Get "scriptSrc"}}
+    {{ $canvasWidth := "auto"}}
+    {{ with .Get "width"}}
+        {{ $canvasWidth = .}}
+    {{ end }}
+    {{ $canvasHeight := "500px"}}
+    {{ with .Get "height"}}
+        {{ $canvasHeight = .}}
+    {{ end }}
+
+    {{/*  THis shortcut should only be use once  */}}
+
+    <div id="container" style="width:{{$canvasWidth}};height:{{ $canvasHeight }}"></div>
+
+    <script type="module" src='{{ .Get "scriptSrc" }}'></script>
+{{ end}}
