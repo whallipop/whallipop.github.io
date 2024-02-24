@@ -45,4 +45,33 @@ So keep our tabframe-type shortcut's structure clean and follow it each time may
 ## Elements inside "content"
 
 As we mentioned before inside "content" we will also follow a consistent structure. There are three part inside "content":
-- `DropdownSelector`: change the pattern of the current comparison. As you can see in
+
+##  `DropdownSelector`
+change the pattern of the current comparison. I use the following CSS selectors to change the pattern when users select the pattern:
+```CSS
+.svg-select-xinbox-option {
+  display: none;
+}
+select[data-chosen="XInBox"].svg-select ~ .interaction-of-color .svg-select-xinbox-option {
+  display: block;
+}
+```
+## Control Palette & Color Palette
+
+Here I simply introduce some optional features of these palette.
+
+Control Palette:
+- Scale the color pattern canvas;
+- random part of the elements' color;
+
+Color Palette:
+- change each elements' color with label groups.
+
+## Color Visual Comparison Result
+
+At first I try to do this by hand-maded code to build the pattern but I quickly find out that it is easier to leverage some vector drawing tool to export the SVG. I use the software **Curve** and export my work to SVG files. Then I modify them and add CSS class for coding my layout.
+
+In this part I simple use the partial with SVG prefix. They satisfy many interesting features including:
+- switch patterns;
+- visualize connected line to remove the color illusion;
+- allow the control palette to change its size
