@@ -5,3 +5,5 @@ draft = false
 +++
 
 # A Very First Example to use Three.js
+
+{{< ThreeJSCanvas >}}
