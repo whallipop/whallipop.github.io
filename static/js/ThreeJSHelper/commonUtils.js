@@ -7,13 +7,33 @@ import * as BufferGeometryUtils from 'three/addons/utils/BufferGeometryUtils.js'
 export const OrbitParams = {
     minDistance: 20,
     maxDistance: 50,
-    maxPolarAngle: Math.PI / 2,
+    maxPolarAngle: Math.PI/2,
+    create: function ({minDistance = 20, maxDistance= 50, maxPolarAngle= Math.PI/2}) {
+      const newParams = Object.create(this);
+      newParams.minDistance = minDistance;
+      newParams.maxDistance = maxDistance;
+      newParams.maxPolarAngle = maxPolarAngle;
+      return newParams;
+    }
+}
+
+export const RendererDeviceInterface = {
+    renderer: null,
+    camera: null,
+    scene: null,
+    create: function (scene, renderer, camera) {
+      const newProxy = Object.create(this);
+      newProxy.renderer = renderer;
+      newProxy.camera = camera;
+      newProxy.scene = scene;
+      return newProxy;
+    }
 }
 
 // let container, group, camera, scene, renderer;
-export class RendererDevice {
+export class OrbitRendererDevice {
     constructor({
-        lightInfoList = null, orbitParams = null, onWindowResize = null,
+        lightInfoList = null, orbitParams = OrbitParams, onWindowResize = null,
         useContainerSize = true,
     }) {
         this.container = document.getElementById('container');
@@ -33,15 +53,13 @@ export class RendererDevice {
         this.camera = new THREE.PerspectiveCamera( 40, this.width / this.height, 1, 1000 );
         this.camera.position.set( 15, 20, 30 );
         this.scene.add( this.camera);
-        if (orbitParams != null){
-            AttachOrbitControls(this.camera, this.renderer.domElement, orbitParams);
-        }
+        AttachOrbitControls(this.camera, this.renderer.domElement, orbitParams);
 
         // light list
         this.AddLight(lightInfoList);
 
         // TODO(): AxesHelper
-        this.scene.add( new THREE.AxesHelper( 20 ) );
+        this.scene.add( new THREE.AxesHelper( 100 ));
 
         this.TestScene();
 
@@ -138,6 +156,13 @@ export class RendererDevice {
         const mesh = new THREE.Mesh( meshGeometry, meshMaterial );
         this.group.add( mesh );
     }
+
+    //# region general functions
+    GetRegisterProxy(){
+        return RendererDeviceInterface.create(
+            this.scene, this.renderer, this.camera);
+    }
+    //# endregion
 };
 
 export class RendererDeviceManager {
@@ -149,8 +174,8 @@ export class RendererDeviceManager {
                 rendererDevice.scene, rendererDevice.camera));
     }
 
-    static RegisterRenderer(renderDevice){
-        this.rendererDeviceArray.push(renderDevice);
+    static RegisterRenderer(renderDeviceInterface){
+        this.rendererDeviceArray.push(renderDeviceInterface);
     }
 
     static UnRegisterRenderer(renderDevice){
@@ -161,14 +186,7 @@ export class RendererDeviceManager {
     }
 }
 
-export function AnimateRenderer( rendererDevice) {
-    var global_animate = function(){
-        requestAnimationFrame( global_animate );
-        rendererDevice.renderer.render( rendererDevice.scene, rendererDevice.camera);
-    }
-    global_animate();
-}
-
+//# region general functions
 function AttachOrbitControls(camera, domElement, orbitParams) {
     // orbit camera controls
     const controls = new OrbitControls( camera, domElement );
@@ -176,3 +194,4 @@ function AttachOrbitControls(camera, domElement, orbitParams) {
     controls.maxDistance = orbitParams.maxDistance;
     controls.maxPolarAngle = orbitParams.maxPolarAngle;
 }
+//# endregion

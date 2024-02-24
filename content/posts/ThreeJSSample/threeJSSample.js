@@ -1,7 +1,9 @@
-import {RendererDevice, RendererDeviceManager, OrbitParams} from "../../js/ThreeJSHelper/commonUtils.js";
+import {OrbitRendererDevice, RendererDeviceManager, OrbitParams} from "../../js/ThreeJSHelper/commonUtils.js";
 
-let rendererDevice = new RendererDevice({
-        orbitParams: OrbitParams,
+let rendererDevice = new OrbitRendererDevice({
+        orbitParams: OrbitParams.create({
+            maxDistance: 100, maxPolarAngle: Math.PI,
+        }),
     })
-RendererDeviceManager.RegisterRenderer(rendererDevice);
+RendererDeviceManager.RegisterRenderer(rendererDevice.GetRegisterProxy());
 RendererDeviceManager.Animate();
