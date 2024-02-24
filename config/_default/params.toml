@@ -69,7 +69,7 @@ defaultBackgroundImage = "image/cornell-box-specular.jpeg" # used as default for
   showPagination = true
   invertPagination = false
   showReadingTime = true
-  showTableOfContents = false
+  showTableOfContents = true
   # showRelatedContent = false
   # relatedContentLimit = 3
   showTaxonomies = false
@@ -88,9 +88,9 @@ defaultBackgroundImage = "image/cornell-box-specular.jpeg" # used as default for
   showViews = false
   showLikes = false
   showTableOfContents = false
-  showCards = false
+  showCards = true
   groupByYear = true
-  cardView = false
+  cardView = true
   cardViewScreenWidth = false
   constrainItemsWidth = false
 
@@ -109,7 +109,7 @@ defaultBackgroundImage = "image/cornell-box-specular.jpeg" # used as default for
 
 [term]
   showHero = false
-  # heroStyle = "background" # valid options: basic, big, background, thumbAndBackground
+  heroStyle = "backgrobiund" # valid options: basic, big, background, thumbAndBackground
   showBreadcrumbs = false
   showViews = false
   showLikes = false

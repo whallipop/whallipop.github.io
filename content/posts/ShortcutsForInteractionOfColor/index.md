@@ -4,53 +4,45 @@ date = 2024-02-10T11:10:04+08:00
 draft = false
 +++
 
-{{< ScriptCommon >}}
-
 {{<lead>}}
 Encapsulate and get smart. 
 {{</lead>}}
 
 # Code notes
 
-The interaction of color comparision is used for practice how to leverage CSS to achieve some interesting effects. The current tool shortcuts can be concluded as the following notes:
+The interaction of color comparision is used for practice how to leverage CSS to achieve some interesting effects. Check the post below to enjoy it!
 
-## `TabParent` -> `TabFrame` -> `ColorCanvas`
+{{< article link="/posts/interacionofcolor/" >}}
 
-`TabParent` is used for show out a tabs group which contain serveral tabs with different color visual comparision effect. And each tab is wrapped by `TabFrame` to be switched by the tab label which is clicked. And inside it we should leverage `ColorCanvas` as a "canvas" wrapping the real content. Its CSS class is `interaction-of-color` which will be used everywhere to achive complex effects.
+The current tool shortcuts can be concluded as the following notes. I try to implement most of the effect by combining CSS, Hugo shortcuts and partials, although there are still some javascript code inside it. If you are interesting, you can check out the `custom.css` to know more about the implementation details.
 
-## Setup `ColorCanvas` properties
+## `TabParent` -> TabFrame-Type Shortcut
 
-`ColorCanvas` is a block element to seperate the layout shortcuts (such as `TabParent` and `TabFrame`) and the color pattern shortcuts (such as `NestedBox`). And before the `ColorCanvas` we can setup its properties by apply the properties shortcuts to able to change the CSS inside the `ColorCanvas`. Take `ToggleGroup` as an example, we place it before our `ColorCanvas`:
+`TabParent` is used for show out a tabs group which contain serveral tabs with different color visual comparision effect. And each tab uses a TabFrame-Type shortcut to show different comparision pattern. So far there are four pattern:
 
-```Hugo
-{{</* ToggleGroup toggleGroupId="tab1-tg" label="Show Connected Line" */>}}
-{{</*  ColorCanvas canvasId="tab1" */>}}
-    <!-- The Actual Inner Content -->
-{{</*  /ColorCanvas */>}}
+```
+TwoSides
+TwoColorMix
+SameColorMix
+TwoColorMixInThreeWay
 ```
 
-The toggle group claim an input of checkbox to switch the status inside `ColorCanvas` combined with other two shortcuts, `ToggleEnable` and `ToggleDisable` to control the visible of an `<div>` element:
+Its CSS class is `pattern-tabs` which will be used to define the style of the special classes inside the `TabParent`.
 
-```Hugo
-{{</* ToggleGroup toggleGroupId="tab1-tg" label="Show Connected Line" */>}}
-{{</*  ColorCanvas canvasId="tab1" */>}}
-    {{</*  ToggleEnable */>}}  {{</*  Single Div ShortCut */>}}
-    {{</*  ToggleDisable */>}} {{</*  Single Div ShortCut */>}}
-{{</*  /ColorCanvas */>}}
-```
+## The Structure of a TabFrame-Type Shortcut
 
-And we should use this following CSS selector to achieve the `ToggleGroup` effect:
-```Hugo
-.simple-toggle[type=checkbox]:checked + .interaction-of-color .toggle-enable + div
-```
-The `simple-toggle`(with checked states or not) "plus" `.interaction-of-color` to select the control canvas of our target `ColorCanvas`. Then check its children which contains our helper shortcuts (`ToggleEnable` and `ToggleDisable`) and leverage "plus" again to find out the `<div>` color pattern element that we want to control.
+After re-arrange of my shortcut style, I decided to setup a consistent framework for each TabFrame-Type shortcut, which includes three part implemented in partial way:
+- `TabHeader`: organize the params information. The most inmport variable is `contextPostfix`. This postfix will be attached to the element inside the TabFrame to ensure each element to be unique in this page.
+- `TabFrame`: the tab label of current tab frame. The layout and style of the tab label is all controlled by CSS class `pattern-label`.
+- content.
 
-## Elements inside `ColorCanvas`
+I also seperate the "content" part into a consistent structure to simplify my workflow. But before I explain it to you, some of you might be confused that if the structure is so similar, why didn't I just extract the common part of them into something like shortcuts? I want to clarify this question first.
 
-There are two types of elements inside `ColorCanvas`:
-- Color pattern: `NestedBox` and so on. They should be **only** one single div inside it;
-- Color palette: `ColorPalette` which contains a series of `ColorPicker` passed the ids of those specific graphics inside Color pattern for controlling their colors.
+First of all, there is no way to nest shortcut. Using partial can do it but pass param into partial are not so convenient. You can only construct a dictionary to store the necessary variable. And if you just want to wrap a `TabFrame` outside, there is no efficient way to place an `{{ .Inner }}` to simple nested your content.
 
-## Other shortcuts
+So keep our tabframe-type shortcut's structure clean and follow it each time may help us and so far I don't expect to increase the total count of tabframe so just keep it simple. If you have a better way to do this, please contact me and I will glad to discuss this topic with you :).
 
-- `BlankFlexItem`: Add a blank item to a flex layout.
+## Elements inside "content"
+
+As we mentioned before inside "content" we will also follow a consistent structure. There are three part inside "content":
+- `DropdownSelector`: change the pattern of the current comparison. As you can see in
