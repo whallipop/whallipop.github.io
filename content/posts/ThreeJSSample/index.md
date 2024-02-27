@@ -7,4 +7,4 @@ draft = false
 {{< Header3js >}}
 # A Very First Example to use Three.js
 
-{{< Coordinate3js height="500px" scriptSrc="threeJSSample.js">}}
+{{< Coordinate3js height="400px" scriptSrc="threeDotJSSample.js">}}

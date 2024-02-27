@@ -17,154 +17,105 @@ export const OrbitParams = {
     }
 }
 
+//#region The "virtual base class" of the RendererDevice
 export const RendererDeviceInterface = {
-    renderer: null,
-    camera: null,
-    scene: null,
-    create: function (scene, renderer, camera) {
+    width: 0, height: 0,
+    renderer: null, camera: null, scene: null,
+    container: null, useContainerSize: true,
+    create: function (
+        width, height,
+        container, scene, renderer, camera,
+        useContainerSize=true,
+        onWindowResize=null) {
       const newProxy = Object.create(this);
+      newProxy.container = container;
       newProxy.renderer = renderer;
       newProxy.camera = camera;
       newProxy.scene = scene;
+      newProxy.useContainerSize = useContainerSize;
+      // custom windows resize callback
+      newProxy.onWindowResize = onWindowResize == null? RendererDeviceManager.onWindowResizeDefault : onWindowResize;
+      newProxy.InitRenderer();
       return newProxy;
+    },
+
+    InitRenderer: function(){
+        this.scene.add( this.camera);
+        // Add to container
+        this.container.appendChild( this.renderer.domElement );
+    }
+}
+//#endregion
+
+// #region basic creators
+class SceneCreator{
+    static create(){
+        const scene = new THREE.Scene();
+        // scene.background = new THREE.Color( 0xffffff ); //useless?
+
+        // AxesHelper
+        scene.add( new THREE.AxesHelper( 100 ));
+
+        // TODO
+        TestScene(scene);
+        return scene;
     }
 }
 
-// let container, group, camera, scene, renderer;
-export class OrbitRendererDevice {
-    constructor({
+class RendererCreator{
+    static create(width, height, renderScale){
+        var renderer = new THREE.WebGLRenderer( { antialias: true } );
+        renderer.setPixelRatio( window.devicePixelRatio * renderScale);
+        renderer.setSize( width, height );
+        document.body.appendChild( renderer.domElement );
+        return renderer;
+    }
+}
+
+class BasicCameraCreator{
+    static create(width, height){
+        const camera = new THREE.PerspectiveCamera( 40, width / height, 1, 1000 );
+        camera.position.set( 15, 20, 30 );
+        return camera;
+    }
+}
+// #endregion
+
+// #region Device creators
+export class OrbitRendererDeviceCreator {
+    static create({
         lightInfoList = null, orbitParams = OrbitParams, onWindowResize = null,
-        useContainerSize = true,
+        useContainerSize = true, renderScale = 1,
     }) {
-        this.container = document.getElementById('container');
-        this.useContainerSize = useContainerSize;
-        this.UpdateSize();
+        const container = document.getElementById('container');
+        const [width, height] = RendererDeviceManager.UpdateSize(useContainerSize, container);
 
-        // create scene
-        this.scene = new THREE.Scene();
-    
-        // create renderer
-        this.renderer = new THREE.WebGLRenderer( { antialias: true } );
-        this.renderer.setPixelRatio( window.devicePixelRatio );
-        this.renderer.setSize( this.width, this.height );
-        document.body.appendChild( this.renderer.domElement );
+        const orbitRendererDevice = RendererDeviceInterface.create(
+            width, height, container,
+            SceneCreator.create(),
+            RendererCreator.create(width, height, renderScale),
+            BasicCameraCreator.create(width, height),
+            useContainerSize, onWindowResize)
         
-        // create camera
-        this.camera = new THREE.PerspectiveCamera( 40, this.width / this.height, 1, 1000 );
-        this.camera.position.set( 15, 20, 30 );
-        this.scene.add( this.camera);
-        AttachOrbitControls(this.camera, this.renderer.domElement, orbitParams);
+        this.AttachOrbitControls(orbitRendererDevice, orbitParams);
+        
+        // TODO
+        AddLight(lightInfoList, orbitRendererDevice);
 
-        // light list
-        this.AddLight(lightInfoList);
-
-        // TODO(): AxesHelper
-        this.scene.add( new THREE.AxesHelper( 100 ));
-
-        this.TestScene();
-
-        // Add to container
-        this.container.appendChild( this.renderer.domElement );
-        window.addEventListener('resize', onWindowResize != null ? onWindowResize : this.onWindowResizeDefault);
+        return orbitRendererDevice;
     }
 
-    UpdateSize(){
-        if (this.useContainerSize){
-            this.width = this.container.offsetWidth;
-            this.height = this.container.offsetHeight;
-        }
-        else {
-            this.width = window.innerWidth;
-            this.height = window.innerHeight;
-        }
+    static AttachOrbitControls(rendererDevice, orbitParams) {
+        // orbit camera controls
+        const controls = new OrbitControls( rendererDevice.camera, rendererDevice.renderer.domElement );
+        controls.minDistance = orbitParams.minDistance;
+        controls.maxDistance = orbitParams.maxDistance;
+        controls.maxPolarAngle = orbitParams.maxPolarAngle;
     }
-
-    AddLight(lightInfoList){
-        // if (lightInfoList == null || typeof(lightInfoList) != "Array" || lightInfoList.length > 0) {
-        //     return;
-        // }
-        // TODO():
-        // ambient light
-        this.scene.add( new THREE.AmbientLight( 0x666666 ) );
-
-        // point light
-        const light = new THREE.PointLight( 0xffffff, 3, 0, 0 );
-        this.camera.add( light );
-    }
-
-    onWindowResizeDefault() {
-        this.UpdateSize();
-        this.camera.aspect = this.width / this.height;
-        this.camera.updateProjectionMatrix();
-        this.renderer.setSize( this.width, this.height );
-    }
-
-    TestScene(){
-        // textures
-        const loader = new THREE.TextureLoader();
-        const texture = loader.load( 'sprites/disc.png' );
-        texture.colorSpace = THREE.SRGBColorSpace;
-
-        this.group = new THREE.Group();
-        this.scene.add( this.group );
-
-        // points
-
-        let dodecahedronGeometry = new THREE.DodecahedronGeometry( 10 );
-
-        // if normal and uv attributes are not removed, mergeVertices() can't consolidate indentical vertices with different normal/uv data
-
-        dodecahedronGeometry.deleteAttribute( 'normal' );
-        dodecahedronGeometry.deleteAttribute( 'uv' );
-
-        dodecahedronGeometry = BufferGeometryUtils.mergeVertices( dodecahedronGeometry );
-
-        const vertices = [];
-        const positionAttribute = dodecahedronGeometry.getAttribute( 'position' );
-
-        for ( let i = 0; i < positionAttribute.count; i ++ ) {
-
-            const vertex = new THREE.Vector3();
-            vertex.fromBufferAttribute( positionAttribute, i );
-            vertices.push( vertex );
-
-        }
-
-        const pointsMaterial = new THREE.PointsMaterial( {
-            color: 0x0080ff,
-            map: texture,
-            size: 1,
-            alphaTest: 0.5
-        } );
-
-        const pointsGeometry = new THREE.BufferGeometry().setFromPoints( vertices );
-
-        const points = new THREE.Points( pointsGeometry, pointsMaterial );
-        this.group.add( points );
-
-        // convex hull
-
-        const meshMaterial = new THREE.MeshLambertMaterial( {
-            color: 0xffffff,
-            opacity: 0.5,
-            side: THREE.DoubleSide,
-            transparent: true
-        } );
-
-        const meshGeometry = new ConvexGeometry( vertices );
-
-        const mesh = new THREE.Mesh( meshGeometry, meshMaterial );
-        this.group.add( mesh );
-    }
-
-    //# region general functions
-    GetRegisterProxy(){
-        return RendererDeviceInterface.create(
-            this.scene, this.renderer, this.camera);
-    }
-    //# endregion
 };
+// #endregion
 
+// #region Renderer Device Manager
 export class RendererDeviceManager {
     static rendererDeviceArray = [];
     static Animate(){
@@ -172,6 +123,11 @@ export class RendererDeviceManager {
         RendererDeviceManager.rendererDeviceArray.forEach((rendererDevice) => 
             rendererDevice.renderer.render( 
                 rendererDevice.scene, rendererDevice.camera));
+    }
+
+    static globalOnWindowResize(){
+        RendererDeviceManager.rendererDeviceArray.forEach((rendererDevice) => 
+            rendererDevice.onWindowResize(rendererDevice));
     }
 
     static RegisterRenderer(renderDeviceInterface){
@@ -184,14 +140,100 @@ export class RendererDeviceManager {
             this.rendererDeviceArray.splice(index, 1); // 2nd parameter means remove one item only
         }
     }
+
+    static Init(){
+        window.addEventListener('resize', RendererDeviceManager.globalOnWindowResize);
+    }
+
+    static onWindowResizeDefault(rendererDevice) {
+        const [width, height] = RendererDeviceManager.UpdateSize(
+            rendererDevice.useContainerSize, rendererDevice.container);
+        rendererDevice.width = width;
+        rendererDevice.height = height;
+        rendererDevice.camera.aspect = rendererDevice.width / rendererDevice.height;
+        rendererDevice.camera.updateProjectionMatrix();
+        rendererDevice.renderer.setSize( rendererDevice.width, rendererDevice.height);
+    }
+
+    static UpdateSize(useContainerSize, container){
+        if (useContainerSize){
+            return [container.offsetWidth, container.offsetHeight];
+        }
+        else {
+            return [window.innerWidth, window.innerHeight];
+        }
+    }
+}
+//#endregion
+
+RendererDeviceManager.Init();
+
+
+export function AddLight(lightInfoList, rendererDevice){
+    // if (lightInfoList == null || typeof(lightInfoList) != "Array" || lightInfoList.length > 0) {
+    //     return;
+    // }
+    // TODO():
+    // ambient light
+    rendererDevice.scene.add( new THREE.AmbientLight( 0x666666 ) );
+
+    // point light
+    const light = new THREE.PointLight( 0xffffff, 3, 0, 0 );
+    rendererDevice.camera.add( light );
 }
 
-//# region general functions
-function AttachOrbitControls(camera, domElement, orbitParams) {
-    // orbit camera controls
-    const controls = new OrbitControls( camera, domElement );
-    controls.minDistance = orbitParams.minDistance;
-    controls.maxDistance = orbitParams.maxDistance;
-    controls.maxPolarAngle = orbitParams.maxPolarAngle;
+export function TestScene(scene){
+    // textures
+    const loader = new THREE.TextureLoader();
+    const texture = loader.load( 'sprites/disc.png' );
+    texture.colorSpace = THREE.SRGBColorSpace;
+
+    const group = new THREE.Group();
+    scene.add( group );
+
+    // points
+    let dodecahedronGeometry = new THREE.DodecahedronGeometry( 10 );
+
+    // if normal and uv attributes are not removed, mergeVertices() can't consolidate indentical vertices with different normal/uv data
+    dodecahedronGeometry.deleteAttribute( 'normal' );
+    dodecahedronGeometry.deleteAttribute( 'uv' );
+
+    dodecahedronGeometry = BufferGeometryUtils.mergeVertices( dodecahedronGeometry );
+
+    const vertices = [];
+    const positionAttribute = dodecahedronGeometry.getAttribute( 'position' );
+
+    for ( let i = 0; i < positionAttribute.count; i ++ ) {
+
+        const vertex = new THREE.Vector3();
+        vertex.fromBufferAttribute( positionAttribute, i );
+        vertices.push( vertex );
+
+    }
+
+    const pointsMaterial = new THREE.PointsMaterial( {
+        color: 0x0080ff,
+        map: texture,
+        size: 1,
+        alphaTest: 0.5
+    } );
+
+    const pointsGeometry = new THREE.BufferGeometry().setFromPoints( vertices );
+
+    const points = new THREE.Points( pointsGeometry, pointsMaterial );
+    group.add( points );
+
+    // convex hull
+
+    const meshMaterial = new THREE.MeshLambertMaterial( {
+        color: 0xffffff,
+        opacity: 0.5,
+        side: THREE.DoubleSide,
+        transparent: true
+    } );
+
+    const meshGeometry = new ConvexGeometry( vertices );
+
+    const mesh = new THREE.Mesh( meshGeometry, meshMaterial );
+    group.add( mesh );
 }
-//# endregion
